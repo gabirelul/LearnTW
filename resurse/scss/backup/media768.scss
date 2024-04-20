@@ -1,0 +1,63 @@
+#navbar {
+    flex-direction: column;
+    height: auto;
+
+    #hamburger-container {
+        .hamburger {
+            display: block;
+
+            .bar {
+                display: block;
+            }
+        }
+    }
+
+    nav {
+        ul {
+            flex-direction: column;
+
+            li {
+                ul {
+                    display: none;
+
+                    li {
+                        position: static;
+                        &::before, &::after {
+                            position: static;
+                        }
+
+                        &:hover::before, &:hover::after {
+                            height: 0;
+                        }
+                    }
+                }
+                a {
+                    #acasa-text {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        .open {
+            display: flex;
+            height: auto;
+            min-height: 40vh;
+            left: 0;
+        }
+    }
+}
+
+.hamburger.active .bar:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+    background-color: var(--visitedLinks);
+}
+
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(3) {
+    transform: translateY(-5.5px) rotate(-45deg);
+    background-color: var(--visitedLinks);
+}

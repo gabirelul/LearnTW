@@ -1,0 +1,63 @@
+@import "../css/variables.css";
+#navbar {
+  display: flex;
+  align-items: center;
+  background-color: var(--dark);
+  font-family: var(--regularFont);
+  height: var(--navHeight);
+}
+#navbar #hamburger-container {
+  display: flex;
+}
+#navbar #hamburger-container .hamburger {
+  display: none;
+  padding: 1em;
+  z-index: 200;
+}
+#navbar #hamburger-container .hamburger .bar {
+  width: 25px;
+  height: 3px;
+  background-color: var(--white);
+  margin: 4px 0;
+}
+#navbar nav ul {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0;
+  text-align: center;
+}
+#navbar nav ul li {
+  list-style: none;
+  position: relative;
+}
+#navbar nav ul li:hover > ul {
+  display: block;
+  width: 100%;
+  align-items: center;
+}
+#navbar nav ul li ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--dark);
+}
+#navbar nav ul li a {
+  display: block;
+  text-decoration: none;
+  color: var(--white);
+  box-sizing: border-box;
+  line-height: var(--navHeight);
+  padding: 0 1rem;
+}
+#navbar nav ul li a #acasa-icon {
+  display: flex;
+  align-items: center;
+}
+#navbar nav .open {
+  display: flex;
+  height: auto;
+  min-height: 40vh;
+  left: 0;
+}

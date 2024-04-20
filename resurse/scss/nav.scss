@@ -1,0 +1,76 @@
+@import "../css/variables.css";
+
+#navbar {
+    display: flex;
+    align-items: center;
+    background-color: var(--dark);
+    font-family: var(--regularFont);
+    height: var(--navHeight);
+
+    #hamburger-container {
+        display: flex;
+
+        .hamburger {
+            display: none;
+            padding: 1em;
+            z-index: 200;
+
+            .bar {
+                width: 25px;
+                height: 3px;
+                background-color: var(--white);
+                margin: 4px 0;
+            }
+        }
+    }
+
+    nav {
+        ul {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0;
+            text-align: center;
+
+            li {
+                list-style: none;
+                position: relative;
+
+                &:hover>ul {
+                    display: block;
+                    width: 100%;
+                    align-items: center;
+                }
+
+                ul {
+                    display: none;
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    background-color: var(--dark);
+                }
+
+                a {
+                    display: block;
+                    text-decoration: none;
+                    color: var(--white);
+                    box-sizing: border-box;
+                    line-height: var(--navHeight);
+                    padding: 0 1rem;
+
+                    #acasa-icon {
+                        display: flex;
+                        align-items: center;
+                    }
+                }
+            }
+        }
+
+        .open {
+            display: flex;
+            height: auto;
+            min-height: 40vh;
+            left: 0;
+        }
+    }
+}

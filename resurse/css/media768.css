@@ -1,0 +1,33 @@
+#navbar {
+  flex-direction: column;
+  height: auto;
+}
+#navbar #hamburger-container .hamburger {
+  display: block;
+}
+#navbar #hamburger-container .hamburger .bar {
+  display: block;
+}
+#navbar nav ul {
+  flex-direction: column;
+}
+#navbar nav ul li ul {
+  position: static;
+}
+#navbar nav ul li a #acasa-text {
+  display: none;
+}
+
+.hamburger.active .bar:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+  background-color: var(--visitedLinks);
+}
+
+.hamburger.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(3) {
+  transform: translateY(-5.5px) rotate(-45deg);
+  background-color: var(--visitedLinks);
+}
