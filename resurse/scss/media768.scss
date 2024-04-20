@@ -13,12 +13,20 @@
     }
 
     nav {
+        transition: 250ms width ease-in-out;
+        justify-content: space-around;
+
         ul {
             flex-direction: column;
+
             li {
+                align-items: center;
+                &:hover > ul {
+                }
                 ul {
                     position: static;
                 }
+
                 a {
                     #acasa-text {
                         display: none;
@@ -26,6 +34,7 @@
                 }
             }
         }
+
     }
 }
 

@@ -20,6 +20,9 @@
   background-color: var(--white);
   margin: 4px 0;
 }
+#navbar nav {
+  display: flex;
+}
 #navbar nav ul {
   display: flex;
   align-items: center;
@@ -43,7 +46,11 @@
   left: 0;
   background-color: var(--dark);
 }
+#navbar nav ul li:hover > a {
+  transform: scale(1.2);
+}
 #navbar nav ul li a {
+  transition: 1s ease-in-out;
   display: block;
   text-decoration: none;
   color: var(--white);
@@ -55,7 +62,8 @@
   display: flex;
   align-items: center;
 }
-#navbar nav .open {
+
+.open {
   display: flex;
   height: auto;
   min-height: 40vh;

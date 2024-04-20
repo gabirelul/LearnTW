@@ -4,10 +4,13 @@ const ham = document.querySelector(".hamburger");
 
 navToggle.addEventListener("click", () => {
     nav.classList.toggle('open');
+    
     if (nav.classList.contains('open')) {
         ham.classList.toggle('active');
+        console.log("CLICKED");
     } else {
         ham.classList.remove('active');
+        console.log("UNCLICKED");
     }
 });
 

@@ -1,4 +1,11 @@
-body, div, span, ul, li, input, a, img {
+body,
+div,
+span,
+ul,
+li,
+input,
+a,
+img {
   box-sizing: border-box;
   margin: 0;
   padding: 0;

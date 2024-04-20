@@ -25,6 +25,8 @@
     }
 
     nav {
+        display: flex;
+
         ul {
             display: flex;
             align-items: center;
@@ -50,13 +52,19 @@
                     background-color: var(--dark);
                 }
 
+                &:hover>a {
+                    transform: scale(1.2);
+                }
+
                 a {
+                    transition: 1s ease-in-out;
                     display: block;
                     text-decoration: none;
                     color: var(--white);
                     box-sizing: border-box;
                     line-height: var(--navHeight);
                     padding: 0 1rem;
+
 
                     #acasa-icon {
                         display: flex;
@@ -65,12 +73,12 @@
                 }
             }
         }
-
-        .open {
-            display: flex;
-            height: auto;
-            min-height: 40vh;
-            left: 0;
-        }
     }
+}
+
+.open {
+    display: flex;
+    height: auto;
+    min-height: 40vh;
+    left: 0;
 }

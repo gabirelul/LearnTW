@@ -8,8 +8,15 @@
 #navbar #hamburger-container .hamburger .bar {
   display: block;
 }
+#navbar nav {
+  transition: 250ms width ease-in-out;
+  justify-content: space-around;
+}
 #navbar nav ul {
   flex-direction: column;
+}
+#navbar nav ul li {
+  align-items: center;
 }
 #navbar nav ul li ul {
   position: static;
