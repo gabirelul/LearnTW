@@ -1,7 +1,5 @@
 @import "../css/variables.css";
 #navbar {
-  display: flex;
-  align-items: center;
   background-color: var(--dark);
   font-family: var(--regularFont);
   height: var(--navHeight);
@@ -61,11 +59,4 @@
 #navbar nav ul li a #acasa-icon {
   display: flex;
   align-items: center;
-}
-
-.open {
-  display: flex;
-  height: auto;
-  min-height: 40vh;
-  left: 0;
 }

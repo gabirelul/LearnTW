@@ -1,8 +1,6 @@
 @import "../css/variables.css";
 
 #navbar {
-    display: flex;
-    align-items: center;
     background-color: var(--dark);
     font-family: var(--regularFont);
     height: var(--navHeight);
@@ -26,7 +24,6 @@
 
     nav {
         display: flex;
-
         ul {
             display: flex;
             align-items: center;
@@ -74,11 +71,4 @@
             }
         }
     }
-}
-
-.open {
-    display: flex;
-    height: auto;
-    min-height: 40vh;
-    left: 0;
 }
