@@ -21,6 +21,9 @@
 #navbar nav {
   display: flex;
 }
+#navbar nav li:hover a {
+  transform: scale(1.2);
+}
 #navbar nav ul {
   display: flex;
   align-items: center;
@@ -39,13 +42,45 @@
 }
 #navbar nav ul li ul {
   display: none;
+  animation: nav-ul-animation 1s linear 1 forwards;
   position: absolute;
   top: 100%;
   left: 0;
   background-color: var(--dark);
 }
-#navbar nav ul li:hover > a {
-  transform: scale(1.2);
+@keyframes nav-ul-animation {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+#navbar nav ul li ul li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  height: 0;
+  width: 15px;
+  background: linear-gradient(to right, var(--white) 0%, var(--dark) 100%);
+  transition: height 1s ease;
+  left: 0;
+}
+#navbar nav ul li ul li::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  height: 0;
+  width: 15px;
+  background: linear-gradient(to left, var(--white) 0%, var(--dark) 100%);
+  transition: height 1s ease;
+  right: 0;
+}
+#navbar nav ul li ul li:hover::before,
+#navbar nav ul li ul li:hover::after {
+  height: 100%;
 }
 #navbar nav ul li a {
   transition: 1s ease-in-out;

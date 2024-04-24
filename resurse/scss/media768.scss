@@ -34,7 +34,6 @@
     nav {
         display: none;
         align-items: center;
-        transition: 250ms width ease-in-out;
         justify-content: center;
 
         ul {
@@ -78,6 +77,7 @@ main {
         overflow-x: auto;
 
         #stilizare-tabel {
+
             th,
             td {
                 padding: 5px;

@@ -26,7 +26,6 @@
 #navbar nav {
   display: none;
   align-items: center;
-  transition: 250ms width ease-in-out;
   justify-content: center;
 }
 #navbar nav ul {

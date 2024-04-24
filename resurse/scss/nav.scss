@@ -1,6 +1,7 @@
 @import "../css/variables.css";
 
 #navbar {
+
     background-color: var(--dark);
     font-family: var(--regularFont);
     height: var(--navHeight);
@@ -24,6 +25,11 @@
 
     nav {
         display: flex;
+
+        li:hover a {
+            transform: scale(1.2);
+        }
+
         ul {
             display: flex;
             align-items: center;
@@ -43,15 +49,52 @@
 
                 ul {
                     display: none;
+                    animation: nav-ul-animation 1s linear 1 forwards;
                     position: absolute;
                     top: 100%;
                     left: 0;
                     background-color: var(--dark);
+
+                    @keyframes nav-ul-animation {
+                        0% {
+                            opacity: 0;
+                            transform: scaleY(0);
+                        }
+
+                        100% {
+                            opacity: 1;
+                            transform: scaleY(1);
+                        }
+                    }
+
+                    li::before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        height: 0;
+                        width: 15px;
+                        background: linear-gradient(to right, var(--white) 0%, var(--dark) 100%);
+                        transition: height 1s ease;
+                        left: 0;
+                    }
+
+                    li::after {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        height: 0;
+                        width: 15px;
+                        background: linear-gradient(to left, var(--white) 0%, var(--dark) 100%);
+                        transition: height 1s ease;
+                        right: 0;
+                    }
+
+                    li:hover::before,
+                    li:hover::after {
+                        height: 100%;
+                    }
                 }
 
-                &:hover>a {
-                    transform: scale(1.2);
-                }
 
                 a {
                     transition: 1s ease-in-out;
