@@ -1,0 +1,41 @@
+body {
+    margin: 4rem 0 0 0;
+    padding: 0;
+}
+
+main {
+    #layout-responsive {
+        grid-gap: .5em;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas:
+            "section-1 section-1"
+            "section-5 section-5"
+            "section-6 section-6"
+            "section-7 section-7"
+            "section-3 section-3"
+            "section-2 section-2"
+            "section-4 section-4"
+            "section-8 section-8";
+    }
+
+    img,
+    video,
+    iframe,
+    picture {
+        display: none;
+    }
+
+}
+
+#link-top {
+    display: none;
+}
+
+footer {
+    p.banner {
+        border: 4px double black;
+        position: fixed;
+        top: 0;
+        right: 0;
+    }
+}

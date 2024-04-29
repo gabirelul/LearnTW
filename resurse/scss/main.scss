@@ -29,8 +29,6 @@ table {
     border-spacing: 0;
 }
 
-
-
 #link-top {
     position: fixed;
     bottom: 0.3em;
@@ -197,6 +195,73 @@ body {
             }
         }
 
+        #section-5 {
+            h2 {
+                display: inline-block;
+                position: relative;
+                font-style: italic;
+                transform: skewY(-20deg) rotate(-10deg);
+                &:hover {
+                    color: var(--blueLight);
+                }
+
+                &::after {
+                    content: 'text';
+                    display: inline-block;
+                    position: relative;
+                    font-weight: bold;
+                    transform: skewY(20deg) rotate(45deg) scaleY(-1) translateY(100px) translateX(70px);
+
+                }
+            }
+        }
+
+        #section-6 {
+            #efect-css-duotone {
+                position: relative;
+                overflow: hidden;
+                width: 500px;
+                height: 500px;
+                background: url('../imagini/gabirelul-1.jpg');
+                background-size: cover;
+                transition: background 2s linear;
+
+                &::before,
+                &::after {
+                    content: " ";
+                    position: absolute;
+                    height: 100%;
+                    width: 100%;
+                    top: 0;
+                    left: 0;
+                    transition: background 2s linear;
+                }
+
+                &::after {
+                    background: var(--blueLight);
+                    mix-blend-mode: lighten;
+                    transition: background 2s linear;
+                }
+
+                &::before {
+                    background: var(--red);
+                    mix-blend-mode: darken;
+                    transition: background 2s linear;
+                }
+
+                &:hover::after {
+                    background: var(--yellow);
+                    mix-blend-mode: screen;
+                }
+
+                &:hover::before {
+                    background: var(--blueDark);
+                    mix-blend-mode: color;
+                }
+            }
+        }
+
+
         #section-8 {
             .section-8-left {
                 display: flex;
@@ -229,6 +294,33 @@ body {
                 flex-direction: column;
                 align-items: center;
             }
+        }
+    }
+
+    #efect-css-stilizare-hr {
+        border: none;
+        height: 5px;
+        background: linear-gradient(to bottom, var(--white), var(--blueLight), var(--blueDark), var(--blueLight), var(--white));
+        // filter: blur(2px); 
+        margin: 20px 0;
+        position: relative;
+
+        &::before {
+            content: "";
+            display: block;
+            width: 20px;
+            /* Adjust the width as needed */
+            height: 20px;
+            /* Adjust the height as needed */
+            background: radial-gradient(circle at center, var(--red), var(--yellow));
+            border-radius: 50%;
+            /* Set border-radius to 50% to make it a circle */
+            position: absolute;
+            top: -10px;
+            left: calc(50% - 10px);
+            background-repeat: no-repeat;
+            z-index: 1;
+            background-position: center;
         }
     }
 }

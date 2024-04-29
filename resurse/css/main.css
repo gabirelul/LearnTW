@@ -155,6 +155,58 @@ body main #section-4 #container-iframe #stilizare-taburi a {
 body main #section-4 #container-iframe #stilizare-taburi a:hover {
   box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.3);
 }
+body main #section-5 h2 {
+  display: inline-block;
+  position: relative;
+  font-style: italic;
+  transform: skewY(-20deg) rotate(-10deg);
+}
+body main #section-5 h2:hover {
+  color: var(--blueLight);
+}
+body main #section-5 h2::after {
+  content: "text";
+  display: inline-block;
+  position: relative;
+  font-weight: bold;
+  transform: skewY(20deg) rotate(45deg) scaleY(-1) translateY(100px) translateX(70px);
+}
+body main #section-6 #efect-css-duotone {
+  position: relative;
+  overflow: hidden;
+  width: 500px;
+  height: 500px;
+  background: url("../imagini/gabirelul-1.jpg");
+  background-size: cover;
+  transition: background 2s linear;
+}
+body main #section-6 #efect-css-duotone::before, body main #section-6 #efect-css-duotone::after {
+  content: " ";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  transition: background 2s linear;
+}
+body main #section-6 #efect-css-duotone::after {
+  background: var(--blueLight);
+  mix-blend-mode: lighten;
+  transition: background 2s linear;
+}
+body main #section-6 #efect-css-duotone::before {
+  background: var(--red);
+  mix-blend-mode: darken;
+  transition: background 2s linear;
+}
+body main #section-6 #efect-css-duotone:hover::after {
+  background: var(--yellow);
+  mix-blend-mode: screen;
+}
+body main #section-6 #efect-css-duotone:hover::before {
+  background: var(--blueDark);
+  mix-blend-mode: color;
+}
 body main #section-8 .section-8-left {
   display: flex;
   flex-direction: column;
@@ -179,6 +231,30 @@ body main #section-8 figure {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+body #efect-css-stilizare-hr {
+  border: none;
+  height: 5px;
+  background: linear-gradient(to bottom, var(--white), var(--blueLight), var(--blueDark), var(--blueLight), var(--white));
+  margin: 20px 0;
+  position: relative;
+}
+body #efect-css-stilizare-hr::before {
+  content: "";
+  display: block;
+  width: 20px;
+  /* Adjust the width as needed */
+  height: 20px;
+  /* Adjust the height as needed */
+  background: radial-gradient(circle at center, var(--red), var(--yellow));
+  border-radius: 50%;
+  /* Set border-radius to 50% to make it a circle */
+  position: absolute;
+  top: -10px;
+  left: calc(50% - 10px);
+  background-repeat: no-repeat;
+  z-index: 1;
+  background-position: center;
 }
 
 .footer {
