@@ -65,6 +65,15 @@ main #section-4 .container-iframe #stilizare-taburi a {
   font-size: 16px;
   color: red;
 }
+main #section-6 #efect-css-duotone {
+  position: relative;
+  overflow: hidden;
+  width: 100px;
+  height: 100px;
+  background: url("../imagini/gabirelul-1.jpg");
+  background-size: cover;
+  transition: background 2s linear;
+}
 main #section-8 {
   text-align: center;
 }

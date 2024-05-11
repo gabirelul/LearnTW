@@ -102,6 +102,18 @@ main {
         }
     }
 
+    #section-6 {
+        #efect-css-duotone {
+            position: relative;
+            overflow: hidden;
+            width: 100px;
+            height: 100px;
+            background: url('../imagini/gabirelul-1.jpg');
+            background-size: cover;
+            transition: background 2s linear;
+        }
+    }
+
     #section-8 {
         text-align: center;
 

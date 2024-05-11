@@ -1,20 +1,21 @@
 {
   "name": "learntw",
   "version": "1.0.0",
-  "description": "",
+  "description": "Reprezentanta auto care vinde si inchiriaza",
   "main": "index.js",
   "scripts": {
     "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Alex",
   "license": "ISC",
   "dependencies": {
     "ejs": "^3.1.10",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "path": "^0.12.7"
   },
   "devDependencies": {
-    "sass": "^1.75.0",
-    "nodemon": "..."
+    "nodemon": "...",
+    "sass": "^1.75.0"
   }
 }
