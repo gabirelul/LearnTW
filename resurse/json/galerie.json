@@ -1,0 +1,60 @@
+{
+    "cale_galerie": "resurse/imagini/galerie",
+    "imagini": [
+        {
+            "fisier": "gabirelul_01.jpg",
+            "descriere": "Lamborghini Urus",
+            "luni": [
+                "martie",
+                "februarie",
+                "noiembrie",
+                "aprilie",
+                "iunie",
+                "mai"
+            ]
+        },
+        {
+            "fisier": "gabirelul_02.jpg",
+            "descriere": "BMW M3Competition",
+            "luni": [
+                "ianuarie",
+                "februarie",
+                "iunie",
+                "mai"
+            ]
+        },
+        {
+            "fisier": "gabirelul_03.jpg",
+            "descriere": "Mercedes-Benz C220",
+            "luni": [
+                "ianuarie",
+                "noiembrie",
+                "iunie",
+                "martie",
+                "aprilie",
+                "mai"
+            ]
+        },
+        {
+            "fisier": "gabirelul_04.jpg",
+            "descriere": "Chevrolet Camaro RS",
+            "luni": [
+                "noiembrie",
+                "aprilie",
+                "mai"
+            ]
+        },
+        {
+            "fisier": "gabirelul_05.jpg",
+            "descriere": "Porsche 944s"
+        },
+        {
+            "fisier": "gabirelul_06.jpg",
+            "descriere": "Fiat 500L"
+        },
+        {
+            "fisier": "gabirelul_07.jpg",
+            "descriere": "BMW S1000R"
+        }
+    ]
+}

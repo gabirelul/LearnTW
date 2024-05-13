@@ -65,32 +65,38 @@ summary {
 body {
   font-family: var(--regularFont);
 }
-body a:visited {
+body main {
+  padding: 1em;
+}
+body main a:visited {
   color: var(--visitedLinks);
 }
-body a[href^=http] {
+body main a[href^=http] {
   position: relative;
 }
-body a[href^=http]::before {
+body main a[href^=http]:hover {
+  color: var(--red);
+}
+body main a[href^=http]::before {
   content: "⮳";
   font-size: 150%;
   position: absolute;
   top: 0;
   left: -1.5em;
 }
-body a {
+body main a {
   position: relative;
   display: inline-block;
   color: var(--dark);
   transition: transform 1s ease-in-out;
 }
-body a:active {
+body main a:active {
   border: 2px solid var(--dark);
 }
-body a:link {
-  color: var(--yellow);
+body main a:link {
+  color: var(--blueDark);
 }
-body a::before {
+body main a::before {
   content: "";
   position: absolute;
   top: 50%;
@@ -104,15 +110,12 @@ body a::before {
   z-index: -1;
   filter: blur(4px);
 }
-body a:hover::before {
+body main a:hover::before {
   width: 100%;
   height: 100%;
 }
-body a:hover {
+body main a:hover {
   transform: scale(1);
-}
-body main {
-  padding: 1em;
 }
 body main ul li::before,
 body main ol li::before,
@@ -124,6 +127,36 @@ body main summary::before {
 }
 body main section {
   padding: 1rem;
+}
+body main #section-1 h2 {
+  color: red;
+}
+body main #section-1 #grid-galerie {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-row-gap: 0.5em;
+  grid-column-gap: 0.5em;
+  counter-reset: nrimag 3;
+  /* nrimag=3 */
+}
+body main #section-1 #grid-galerie img {
+  width: 100%;
+}
+body main #section-1 #grid-galerie figure {
+  margin: 0.5rem;
+}
+body main #section-1 #grid-galerie figcaption {
+  text-align: center;
+  counter-increment: nrimag 2;
+  /* nrimag+=2 */
+}
+body main #section-1 #grid-galerie figcaption::before {
+  content: counter(nrimag, lower-alpha) ")";
+}
+@media screen and (max-width: 500px) {
+  body main #section-1 #grid-galerie {
+    display: block;
+  }
 }
 body main #section-2 i {
   font-size: 16px;
@@ -264,7 +297,7 @@ body main #section-6 #video-vtt video {
   min-width: 30%;
   max-width: 100%;
 }
-body main #section-6 #video-vtt video track::cue {
+body main #section-6 #video-vtt video ::cue {
   font-family: var(--regularFont);
   font-size: 16px;
   line-height: 1.5;

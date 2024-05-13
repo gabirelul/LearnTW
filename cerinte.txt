@@ -101,16 +101,40 @@ Cerinte individuale:
 1. y 
 2. y (but it zooms with 4. animation)
 3. y -> main.scss > body > a[href^="http"]
-4. y (kindaTODO)
+4. y 
 
 ```Etapa 5
 
 Cerinte individuale:
 
-- galerie-animata
 - galerie-statica
+
+- Compilare automatica scss
+a.
+b.
+c.
+d.
+e.
+
+- Customizare Bootstrap
+-
+-
+-
+-
+-
+-
+-
+
+- Conectare Bootstrap
+
+- Efecte CSS
+
+- galerie-animata
+
 = efect-css-reflexie-text
+
 = efect-css-duotone
+
 = efect-css-stilizare-hr
 
 ```Etapa 6
