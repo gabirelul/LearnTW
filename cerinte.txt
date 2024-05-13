@@ -1,5 +1,5 @@
 
-Etapa 2
+```Etapa 1
 
 1 y
 2 index.html > 5
@@ -23,7 +23,7 @@ d - CTRL+F download
 
 Bonus: MathML - y
 
-Etapa 2
+```Etapa 2
 
 Schema cromatica:
     --red: #d52b1e;
@@ -54,7 +54,7 @@ Bonus:
 Resetare CSS - main.css 
 Stilizare formula in MathML - index.html
 
-Etapa 3
+```Etapa 3
 
 Task meniu [individual] - (TODO animations)
 Stil printare [individual]
@@ -66,23 +66,51 @@ Stil printare [individual]
 6 -
 7 -
 
-Etapa 4
+```Etapa 4
 
 1. y
 2. y
-3. y -> index.js
+3. y 
 4. y 
 5. y 
 6. y 
-7. y /resurse
+7. y
 8. y 
 9. y 
-
-Etapa 5
+10. y 
+11. y 
+12. y 
+13. y 
+14. y 
+15. TODO / TOASK
+16. y 
+17. y 
+18. y
+19. y 
+20. y 
 
 Cerinte individuale:
+
+- video-vtt
+1. y
+2. y 
+3. y 
+4. TOASK Stilizare captions
+
+- stilizare-linkuri: 
+1. y 
+2. y (but it zooms with 4. animation)
+3. y -> main.scss > body > a[href^="http"]
+4. y (kindaTODO)
+
+```Etapa 5
+
+Cerinte individuale:
+
 - galerie-animata
 - galerie-statica
 = efect-css-reflexie-text
 = efect-css-duotone
 = efect-css-stilizare-hr
+
+```Etapa 6

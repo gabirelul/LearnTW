@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <%- include('../fragmente/head.ejs') %>
+
+        <meta name="keywords"
+            content="BMW, Automobile, Performanta, Inovatie, Eleganta, Audi, Masini de lux, Tehnologie avansata, Confort, Porsche, Sportivitate, Design iconic, Performanta de varf, Exclusivitate, Lamborghini, Supercaruri, Viteza extrema, Design agresiv, Bucuresti, Romania, Sector 1 2 3 4 5 6, Reprezentanta">
+        <meta name="description"
+            content="Vanzari/inchirieri auto (Audi, Mercedes, BMW). Consultanta. Schimb cu masina veche. Livram si la domiciliu in Bucuresti.">
+        <meta name="author" content="Alex Chera">
+        <title>Racebox</title>
+</head>
+
+<body>
+
+    <%- include('../fragmente/header.ejs') %>
+
+        <main>
+            <div id="err-coloane">
+                <div id="err-imag">
+                    <img src="<%- locals.imagine %>" />
+                </div>
+                <section>
+                    <h2><%- locals.titlu %></h2>
+                    <p><%- locals.text %></p>
+                </section>
+            </div>
+        </main>
+
+        <%- include('../fragmente/footer.ejs') %>
+
+
+</body>
+
+</html>

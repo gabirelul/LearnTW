@@ -1,0 +1,52 @@
+{
+    "cale_baza": "resurse/imagini/erori",
+    "eroare_default": {
+        "titlu": "Eroare !!!",
+        "text": "A survenit eroare.",
+        "imagine": "eroare.png"
+    },
+    "info_erori": [
+        {
+            "identificator": 404,
+            "status": true,
+            "titlu": "404 - Resursa negasita!",
+            "text": "Pagina nu a fost gasita!",
+            "imagine": "lupa.png"
+        },
+        {
+            "identificator": 403,
+            "status": true,
+            "titlu": "403 - Forbidden, Nu ai dreptul sa accesezi!",
+            "text": "Ai greșit ruta.",
+            "imagine": "lupa.png"
+        },
+        {
+            "identificator": 400,
+            "status": true,
+            "titlu": "400 - Bad request!",
+            "text": "Cerere gresita!",
+            "imagine": "eroare.png"
+        },
+        {
+            "identificator": 1,
+            "status": false,
+            "titlu": "Site în lucru!",
+            "text": "Muncim, muncim!",
+            "imagine": "eroare.png"
+        },
+        {
+            "identificator": 2,
+            "status": false,
+            "titlu": "Eroare baza date!",
+            "text": "Reveniti mai tarziu!",
+            "imagine": "eroare.png"
+        },
+        {
+            "identificator": 3,
+            "status": false,
+            "titlu": "Date gresite!",
+            "text": "Verificati datele!",
+            "imagine": "eroare.png"
+        }
+    ]
+}
