@@ -1,0 +1,33 @@
+main #layout-responsive {
+  display: grid;
+  grid-gap: 1em;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas: "section-1 section-1 section-1 section-1" "section-5 section-6 section-6 section-7" "section-3 section-3 section-2 section-2" "section-4 section-4 section-2 section-2" "section-8 section-8 section-8 section-8";
+}
+main #layout-responsive > * {
+  background-color: #eee;
+}
+main #layout-responsive #section-1 {
+  grid-area: section-1;
+}
+main #layout-responsive #section-2 {
+  grid-area: section-2;
+}
+main #layout-responsive #section-3 {
+  grid-area: section-3;
+}
+main #layout-responsive #section-4 {
+  grid-area: section-4;
+}
+main #layout-responsive #section-5 {
+  grid-area: section-5;
+}
+main #layout-responsive #section-6 {
+  grid-area: section-6;
+}
+main #layout-responsive #section-7 {
+  grid-area: section-7;
+}
+main #layout-responsive #section-8 {
+  grid-area: section-8;
+}

@@ -17,30 +17,31 @@
   <main>
     <div id="layout-responsive">
       <section id="section-1">
+        <h2>Galeria</h2>
+        <button type="button" class="btn btn-primary btn-lg">Stil-1-mare</button>
         <div id="grid-galerie">
           <% 
-                        //var vLuni=["ianuarie", "februarie", "martie", "aprilie", "iunie", "iulie"];
-                        var vLuni=["ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie", "august", "septembrie", "octombrie", "noiembrie", "decembrie"];
-                        var d = new Date();
-                        var lunaCurenta = vLuni[d.getMonth()];
-                        for (let imag of locals.imagini) { 
-                            if (imag?.luni?.includes(lunaCurenta)) {
-                        %>
-          <figure>
-            <picture>
-              <source srcset="<%= imag.fisier_mediu %>" media="(max-width:1200px)" />
-              <img src="<%= imag.fisier %>" alt="prajituri" />
-            </picture>
-            <figcaption><%= imag.descriere %></figcaption>
-          </figure>
-          <% 
-                            }
-                        } 
-                        %>
+                var vLuni=["ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie", "august", "septembrie", "octombrie", "noiembrie", "decembrie"];
+                var d=new Date();
+                var lunaCurenta=vLuni[d.getMonth()];
+                for (let imag of locals.imagini) { 
+                    if (imag?.luni?.includes(lunaCurenta)) {
+                    %>
+                        <figure>
+                            <picture>
+                                <source srcset="<%= imag.fisier_mediu %>" media="(max-width:768px)"/>
+                                <img src="<%= imag.fisier %>" alt="masini" />
+                            </picture>
+                        
+                        <figcaption><%= imag.descriere%></figcaption>
+                        </figure>
+                <% } %>
+            <% } %>
         </div>
       </section>
+
       <section id="section-5">
-        <h2>text</h2>
+        <% // <h2>text</h2> %>
         <div id="efect-css-duotone">
         </div>
         <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
