@@ -68,6 +68,7 @@
   background: linear-gradient(to right, var(--white) 0%, var(--dark) 100%);
   transition: height 1s ease;
   left: 0;
+  z-index: -1;
 }
 #navbar nav ul li ul li::after {
   content: "";
@@ -78,6 +79,7 @@
   background: linear-gradient(to left, var(--white) 0%, var(--dark) 100%);
   transition: height 1s ease;
   right: 0;
+  z-index: -1;
 }
 #navbar nav ul li ul li:hover::before,
 #navbar nav ul li ul li:hover::after {
@@ -90,7 +92,7 @@
   color: var(--white);
   box-sizing: border-box;
   line-height: var(--navHeight);
-  padding: 0 1rem;
+  padding: 0 2rem;
   width: auto;
 }
 #navbar nav ul li a #acasa-icon {

@@ -13,6 +13,23 @@ obGlobal = {
     folderBackup: path.join(__dirname, "backup")
 }
 
+// conectare baza de date
+
+const Client = require('pg').Client;
+
+var client = new Client({
+    database: "cti_2024",
+    user: "gabirelul",
+    password: "alexgab",
+    host: "localhost",
+    port: 5432
+});
+client.connect();
+
+// client.query("select * from prajituri", function(err, rez){
+//     console.log(rez);
+// })
+
 app = express();
 
 console.log("Folder proiect", __dirname);
@@ -24,20 +41,46 @@ console.log("Director de lucru", process.cwd());
 
 app.set("view engine", "ejs");
 
-
-// 20.
-vect_foldere = ["temp", "temp1", "backup"]
-for (let folder of vect_foldere) {
-    let caleFolder = path.join(__dirname, folder);
-    if (!fs.existsSync(caleFolder))
-        fs.mkdirSync(caleFolder);
-}
-
-
 app.use("/resurse", express.static(path.join(__dirname, "resurse")));
 app.use("/node_modules", express.static(path.join(__dirname, "node_modules")));
 
 app.use(express.static(__dirname));
+
+// ---------------------------- PRODUSE ----------------------------
+
+app.get("/produse", function (req, res) {
+    // console.log(req.query)
+    var conditieQuery = "";
+    if (req.query.tip) {
+        conditieQuery = ` where tip_produs='${req.query.tip}'`
+    }
+    client.query("select * from unnest(enum_range(null::categ_prajitura))", function (err, rezOptiuni) {
+
+        client.query(`select * from prajituri ${conditieQuery}`, function (err, rez) {
+            if (err) {
+                console.log(err);
+                afisareEroare(res, 2);
+            }
+            else {
+                res.render("pagini/produse", { produse: rez.rows, optiuni: rezOptiuni.rows })
+            }
+        })
+    });
+})
+
+app.get("/produs/:id", function (req, res) {
+    client.query(`select * from prajituri where id=${req.params.id}`, function (err, rez) {
+        if (err) {
+            console.log(err);
+            afisareEroare(res, 2);
+        }
+        else {
+            res.render("pagini/produs", { prod: rez.rows[0] })
+        }
+    })
+})
+
+// -------------------------------------------------------------------
 
 // app.get("/", function (req, res) {
 //     res.sendFile(__dirname + "/index.html")
@@ -76,6 +119,14 @@ app.get("/favicon.ico", function (req, res) {
 app.get("/*.ejs", function (req, res) {
     afisareEroare(res, 400);
 });
+
+// 20.
+vect_foldere = ["temp", "temp1", "backup"]
+for (let folder of vect_foldere) {
+    let caleFolder = path.join(__dirname, folder);
+    if (!fs.existsSync(caleFolder))
+        fs.mkdirSync(caleFolder);
+}
 
 // 17.
 app.get(new RegExp("^\/resurse\/[A-Za-z0-9\/]*\/$"), function (req, res) {
@@ -153,6 +204,38 @@ function afisareEroare(res, _identificator, _titlu, _text, _imagine) {
 // find = gaseste primul elem pentru care funtia returneaza true
 
 
+// ------------------------- GALERIE ANIMATA -------------------------
+
+// app.get("*/galerie-animata.css",function(req, res){
+
+//     var sirScss=fs.readFileSync(path.join(__dirname,"resurse/scss_ejs/galerie_animata.scss")).toString("utf8");
+//     var culori=["navy","black","purple","grey"];
+//     var indiceAleator=Math.floor(Math.random()*culori.length);
+//     var culoareAleatoare=culori[indiceAleator]; 
+//     rezScss=ejs.render(sirScss,{culoare:culoareAleatoare});
+//     console.log(rezScss);
+//     var caleScss=path.join(__dirname,"temp/galerie_animata.scss")
+//     fs.writeFileSync(caleScss,rezScss);
+//     try {
+//         rezCompilare=sass.compile(caleScss,{sourceMap:true});
+
+//         var caleCss=path.join(__dirname,"temp/galerie_animata.css");
+//         fs.writeFileSync(caleCss,rezCompilare.css);
+//         res.setHeader("Content-Type","text/css");
+//         res.sendFile(caleCss);
+//     }
+//     catch (err){
+//         console.log(err);
+//         res.send("Eroare");
+//     }
+// });
+
+// app.get("*/galerie-animata.css.map",function(req, res){
+//     res.sendFile(path.join(__dirname,"temp/galerie-animata.css.map"));
+// });
+
+// -------------------------------------------------------------------
+
 function initImagini() {
     var continut = fs.readFileSync(path.join(__dirname, "resurse/json/galerie.json")).toString("utf-8");
 
@@ -199,7 +282,7 @@ function compileazaScss(caleScss, caleCss) {
     }
 
     // la acest punct avem cai absolute in caleScss si  caleCss
-    //TO DO
+    // TO DO
     let numeFisCss = path.basename(caleCss);
     if (fs.existsSync(caleCss)) {
         fs.copyFileSync(caleCss, path.join(obGlobal.folderBackup, "resurse/css", numeFisCss))// +(new Date()).getTime()

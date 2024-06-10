@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head <%- include('../fragmente/head.ejs') %> <!-- serverul executa codul din < %-, browserul vede direct nav ul -->
+<head>
+  <%- include('../fragmente/head.ejs') %>
+  <!-- serverul executa codul din < %-, browserul vede direct nav u -->
   <!-- < %- cod html, < % = , < % ruleaza -->
 
   <meta name="keywords" content="BMW, Automobile, Performanta, Inovatie, Eleganta, Audi, Masini de lux, Tehnologie avansata, Confort, Porsche, Sportivitate, Design iconic, Performanta de varf, Exclusivitate, Lamborghini, Supercaruri, Viteza extrema, Design agresiv, Bucuresti, Romania, Sector 1 2 3 4 5 6, Reprezentanta">
@@ -41,8 +43,7 @@
       </section>
 
       <section id="section-5">
-        <% // <h2>text</h2> %>
-        <div id="efect-css-duotone">
+        <div class="efect-css-duotone">
         </div>
         <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
           <mrow>
@@ -57,6 +58,8 @@
           </mrow>
         </math>
         <p>Ip <%- locals.ip %></p>
+        <div class="text" data-text="Un text">Un text</div>
+
       </section>
       <section id="section-6">
         <%
@@ -106,7 +109,6 @@
           <i>gadgeturi</i> auto, avem totul
           acoperit. Indiferent de marca sau modelul mașinii dvs., veți găsi cu siguranță ceea ce căutați.
         </p>
-        <hr id="efect-css-stilizare-hr">
         <p><b>Experiență Ușoară de Cumpărături</b> <br> Interfața noastră simplă și intuitivă vă permite să
           explorați
           și să găsiți produsele dorite cu ușurință. Fiți siguri că veți găsi tot ce aveți nevoie pentru a
@@ -254,6 +256,10 @@
           <h2 id="section-text">DESTINAȚIA ONLINE PREMIUM PENTRU PASIONAȚII AUTO</h2>
           <p><q>Drumul către aventură începe cu o mașină de încredere</q>, așa că aici găsiți serviciile
             noastre:</p>
+          <div class="gradient-line">
+          <hr>
+        </div>
+          
           <ul>
             <li>Cumpară <i class="fas fa-check"></i></li>
             <li>Închiriază <i class="fas fa-check"></i></li>

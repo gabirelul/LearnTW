@@ -71,19 +71,6 @@ body main {
 body main a:visited {
   color: var(--visitedLinks);
 }
-body main a[href^=http] {
-  position: relative;
-}
-body main a[href^=http]:hover {
-  color: var(--red);
-}
-body main a[href^=http]::before {
-  content: "⮳";
-  font-size: 150%;
-  position: absolute;
-  top: 0;
-  left: -1.5em;
-}
 body main a {
   position: relative;
   display: inline-block;
@@ -257,58 +244,48 @@ body main #section-4 #container-iframe #stilizare-taburi a {
 body main #section-4 #container-iframe #stilizare-taburi a:hover {
   box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.3);
 }
-body main #section-5 h2 {
-  display: inline-block;
+body main #section-5 .text {
+  font-size: 40px;
+  color: black;
   position: relative;
-  font-style: italic;
-  transform: skewY(-20deg) rotate(-10deg);
+  transition: color 0.3s;
 }
-body main #section-5 h2:hover {
-  color: var(--blueLight);
+body main #section-5 .text::after {
+  content: attr(data-text);
+  display: block;
+  transform: scaleY(-1);
+  opacity: 0.5;
+  filter: blur(1px);
 }
-body main #section-5 h2::after {
-  content: "text";
-  display: inline-block;
+body main #section-5 .efect-css-duotone {
   position: relative;
-  font-weight: bold;
-  transform: skewY(20deg) rotate(45deg) scaleY(-1) translateY(100px) translateX(70px);
-}
-body main #section-5 #efect-css-duotone {
-  position: relative;
-  overflow: hidden;
   width: 100%;
-  height: 500px;
-  background: url("../imagini/gabirelul-1.jpg");
+  height: 40rem;
+  background-image: url("/resurse/imagini/gabirelul-1.jpg");
   background-size: cover;
-  transition: background 2s linear;
-  z-index: 1;
+  transition: filter 2s ease;
 }
-body main #section-5 #efect-css-duotone::before, body main #section-5 #efect-css-duotone::after {
-  content: " ";
+body main #section-5 .efect-css-duotone::before, body main #section-5 .efect-css-duotone::after {
+  content: "";
   position: absolute;
-  height: 100%;
-  width: 100%;
   top: 0;
   left: 0;
-  transition: background 2s linear;
-}
-body main #section-5 #efect-css-duotone::after {
-  background: var(--blueLight);
-  mix-blend-mode: lighten;
-  transition: background 2s linear;
-}
-body main #section-5 #efect-css-duotone::before {
-  background: var(--red);
-  mix-blend-mode: darken;
-  transition: background 2s linear;
-}
-body main #section-5 #efect-css-duotone:hover::after {
-  background: var(--yellow);
+  right: 0;
+  bottom: 0;
   mix-blend-mode: screen;
+  transition: background-color 2s ease;
 }
-body main #section-5 #efect-css-duotone:hover::before {
-  background: var(--blueDark);
-  mix-blend-mode: color;
+body main #section-5 .efect-css-duotone::before {
+  background-color: rgba(255, 0, 0, 0.5);
+}
+body main #section-5 .efect-css-duotone::after {
+  background-color: rgba(0, 0, 255, 0.5);
+}
+body main #section-5 .efect-css-duotone:hover::before {
+  background-color: rgba(0, 255, 0, 0.5);
+}
+body main #section-5 .efect-css-duotone:hover::after {
+  background-color: rgba(0, 255, 255, 0.5);
 }
 body main #section-6 {
   height: 100%;
@@ -390,6 +367,39 @@ body main #section-8 .section-8-left h2 {
 body main #section-8 .section-8-left p {
   text-align: center;
 }
+body main #section-8 .section-8-left .gradient-line {
+  background: linear-gradient(to bottom, #bbeeff, #3388ff, #bbeeff);
+  padding: 5px 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+  height: 7px;
+  width: 100%;
+}
+body main #section-8 .section-8-left .gradient-line hr {
+  border: none;
+  height: 4px;
+  background: #3388ff;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  margin: 0;
+}
+body main #section-8 .section-8-left .gradient-line::before {
+  content: "";
+  z-index: 2;
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 18px;
+  background: var(--blueLight);
+  border-radius: 50%;
+  border: 3px solid var(--blueDark);
+}
 body main #section-8 .section-8-right img {
   max-width: 100%;
   height: auto;
@@ -400,30 +410,6 @@ body main #section-8 figure {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-body #efect-css-stilizare-hr {
-  border: none;
-  height: 5px;
-  background: linear-gradient(to bottom, var(--white), var(--blueLight), var(--blueDark), var(--blueLight), var(--white));
-  margin: 20px 0;
-  position: relative;
-}
-body #efect-css-stilizare-hr::before {
-  content: "";
-  display: block;
-  width: 20px;
-  /* Adjust the width as needed */
-  height: 20px;
-  /* Adjust the height as needed */
-  background: radial-gradient(circle at center, var(--red), var(--yellow));
-  border-radius: 50%;
-  /* Set border-radius to 50% to make it a circle */
-  position: absolute;
-  top: -10px;
-  left: calc(50% - 10px);
-  background-repeat: no-repeat;
-  z-index: 1;
-  background-position: center;
 }
 
 .footer {
@@ -461,6 +447,19 @@ body #efect-css-stilizare-hr::before {
   color: var(--white);
   padding: 0;
   margin: 1em 0 0.5em;
+}
+.footer .footer-middle a[href^=http] {
+  position: relative;
+}
+.footer .footer-middle a[href^=http]:hover {
+  color: var(--red);
+}
+.footer .footer-middle a[href^=http]::before {
+  content: "⮳";
+  font-size: 150%;
+  position: absolute;
+  top: 0;
+  left: -1.5em;
 }
 .footer .footer-middle address {
   display: flex;
