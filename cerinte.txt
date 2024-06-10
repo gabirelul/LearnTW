@@ -140,3 +140,15 @@ Cerinte individuale:
 - efect-css-stilizare-hr [y]
 
 ``` Etapa 6
+
+- format-entitati
+1. Pagina produse [y]
+2. Pagina produs unic [y]
+3. Tabelul de produse [y]
+4. Impartirea pe categorii mari [y]
+5. Format afișare produse (pentru pagina de produse) [y]
+6. Filtre. Inputuri [y]
+7. Cerințe specifice filtre [y]
+8. Butoane. Operațiile efective de filtrare/sortare/calculare [y]
+9. Mesaj de tip "confirm" [y]
+10. La click pe butoanele de filtrare/sortare/calculare se va verifica daca inputurile afectate de ele au valori valide [y]

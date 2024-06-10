@@ -10,7 +10,7 @@
 }
 
 .grid-produse .produs h3{
-    background-color: var(--culoare-roz-inchis);
+    background-color: var(--blueLight);
     text-align: center;
     margin-top: 0;
     padding-top: 0.5rem;
@@ -31,7 +31,7 @@
 }
 .grid-produse .produs .info-prod{
     display:flex;
-    background-color: var(--cl-marcare);
+    background-color: var(--yellow);
 }
 .grid-produse .produs .info-prod p{
     width:30%;
@@ -46,7 +46,7 @@
 }
 
 .info-produse{
-    background-color: var(--cl-marcare);
+    background-color: var(--blueLight);
     padding:0.2rem;
     box-shadow: 0px 0px 0.5rem 0.15rem grey;
 }
@@ -56,7 +56,7 @@
 }
 .selecteaza-cos{
     display: inline-block;
-    background-color: var(--culoare-mov);
+    background-color: var(--blueLight);
     position:absolute;
     bottom:0.5rem;
     right:0.5rem;
@@ -67,7 +67,6 @@
 }
 
 .selecteaza-cos:hover{
-    background-color: var(--cl-marcare);
-    
-    border:1px solid  var(--culoare-mov);
+    background-color: var(--blueDark);
+    border:1px solid  var(--white);
 }
