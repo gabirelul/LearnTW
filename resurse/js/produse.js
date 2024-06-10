@@ -1,3 +1,4 @@
+
 window.addEventListener("load", function(){
 
     document.getElementById("inp-pret").onchange=function(){

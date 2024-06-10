@@ -1,9 +1,3 @@
-main{
-    --padd-main:1rem;
-    padding-left:var(--padd-main);
-    padding-right:var(--padd-main);
-}
-
 .grid-produse{
     display:grid;
     grid-template-columns: 1fr 1fr;
