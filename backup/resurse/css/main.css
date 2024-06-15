@@ -64,6 +64,47 @@ summary {
 
 body {
   font-family: var(--regularFont);
+  --red: #d52b1e;
+  --yellow: #fed100;
+  --blueDark: #283044;
+  --blueLight: #78A1BB;
+  --cream: #EBF5EE;
+  --dark: #1c1c1c;
+  --white: #fff;
+  --black: #000;
+  --secondaryGrey: #A9A9A9;
+  --lightGrey: #e8e9eb;
+  --visitedLinks: #8a2be2;
+}
+body.dark {
+  --red: #cc0000;
+  --yellow: green;
+  --blueDark: #666666;
+  --blueLight: #1a3d66;
+  --cream: #2b2b2b;
+  --dark: #000;
+  --white: #fff;
+  --secondaryGrey: #595959;
+  --lightGrey: #1c1c1c;
+  --visitedLinks: #7f00ff;
+}
+@keyframes plimbare-orizontala {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+body .plimbare-orizontala {
+  white-space: nowrap;
+  overflow: hidden;
+}
+body .plimbare-orizontala p {
+  display: inline-block;
+  animation: plimbare-orizontala 5s linear infinite;
+  font-size: 40px;
+  color: var(--blueLight);
 }
 body main {
   padding: 1em;
@@ -116,7 +157,7 @@ body main section {
   padding: 1rem;
 }
 body main #section-1 h2 {
-  color: red;
+  color: green;
 }
 body main #section-1 #grid-galerie {
   display: grid;

@@ -1,3 +1,5 @@
+<script src="/resurse/js/tema.js"></script>
+
 <header>
     <div id="navbar">
         <div id="hamburger-container">
@@ -15,24 +17,39 @@
                         <span id="acasa-text">Acasă</span>
                     </a>
                 </li>
-                <li><a href="/produse">Cumpara</a>
+                <li><a>Produse</a>
+                    <ul>
+                        <li selected value="toate"><a href="/produse">Toate</a></li>
+                        <% for (let lis of locals.optiuniMeniu) { %>
+                            <li value="<%- lis.unnest %>"><a href="/produse?tip=<%- lis.unnest %>"><%- lis.unnest %></a>
+                            </li>
+                            <% } %>
+                    </ul>
                 </li>
                 <li><a href="/galerie">Galerie</a>
                     <ul>
-                        <li><a href="/galerie">Statica</a></li>
-                        <li><a href="/galerie">Dinamica</a></li>
-                        
+                        <li><a href="/galerie_statica">Statica</a></li>
+                        <li><a href="/galerie_dinamica">Dinamica</a></li>
+
                     </ul>
                 </li>
                 <li><a>Produse</a>
                     <ul>
-                        <li><a href="/produse">Toate</a></li>
-                        <li><a href="/produse?tip=cofetarie">Cofetarie</a></li>
-                        <li><a href="/produse?tip=gelaterie">Gelaterie</a></li>
-                        <li><a href="/produse?tip=patiserie">Patiserie</a></li>
+                        <li selected value="toate"><a href="/produse">Toate</a></li>
+                        <% for (let lis of locals.optiuniMeniu) { %>
+                            <li value="<%- lis.unnest %>"><a href="/produse?tip=<%- lis.unnest %>"><%- lis.unnest %></a>
+                            </li>
+                            <% } %>
                     </ul>
+
                 </li>
             </ul>
+            <select id="theme-selector">
+                <option value="default">Default</option>
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+              </select>
         </nav>
+
     </div>
 </header>

@@ -1,0 +1,102 @@
+@media screen and (max-width: 900px) {
+    .responsive {
+        width: 100%;
+        font-size: 11px;
+        display: block;
+    }
+
+    .responsive thead,
+    .responsive tbody,
+    .responsive tr,
+    .responsive th,
+    .responsive td {
+        display: block;
+    }
+
+    .responsive thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    .responsive tr {
+        border: 1px solid #ccc;
+    }
+
+    .responsive td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+    }
+
+    .responsive td:before {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    .responsive td:nth-of-type(1):before {
+        content: "Ziua";
+    }
+
+    .responsive td:nth-of-type(2):before {
+        content: "Interval Orar";
+    }
+
+    .responsive td:nth-of-type(3):before {
+        content: "Zona Acoperită";
+    }
+
+    .responsive td:nth-of-type(4):before {
+        content: "Tarif de Livrare";
+    }
+
+    .text-coloane {
+        column-count: 1;
+        column-width: 50px;
+        column-gap: 30px;
+        column-rule-style: solid;
+        column-rule-width: 1px;
+        column-rule-color: #000000;
+    }
+}
+
+.responsive {
+    color: var(--blueDark);
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.responsive th,
+td {
+    border: 1px solid;
+}
+
+
+.text-coloane {
+    column-count: 2;
+    column-width: 50px;
+    column-gap: 30px;
+    column-rule-style: solid;
+    column-rule-width: 1px;
+    column-rule-color: #ff0202;
+}
+
+#mesaj-filtrare {
+    font-size: 1.1em;
+    color: rgb(150, 129, 129);
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 2px dashed rgb(205, 155, 155);
+    background-color: #f5e5e5;
+}

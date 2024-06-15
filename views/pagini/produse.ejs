@@ -16,24 +16,28 @@
     <%- include("../fragmente/header") %>
 
         <main>
-            <label> Nume: <input type="text" id="inp-nume"></label>
-            <div> Calorii:
-                <p><label>Dietetic (calorii &lt; 350)
-                        <input id="i_rad1" name="gr_rad" value="0:350" type="radio" />
-                    </label></p>
-                <p><label>Mediu (350 &le; calorii &lt; 700)
-                        <input id="i_rad2" name="gr_rad" value="350:700" type="radio" />
-                    </label>
-                <p><label>Ridicat caloric (700 &le; calorii)
-                        <input id="i_rad3" name="gr_rad" value="700:1000000000" type="radio" />
-                    </label>
-                <p><label>Toate
-                        <input id="i_rad4" checked name="gr_rad" value="toate" type="radio" />
-                    </label>
+            <!-- <%- locals.optiuniMeniu[1].unnest %> -->
+            <label> Nume: <input type="text" id="inp-nume" onchange="filtrareProduse()"></label>
+            <div class="btn-group" role="group" aria-label="Calorii">
+                <input type="radio" class="btn-check" name="gr_rad" id="i_rad1" value="0:350" autocomplete="off"
+                    onchange="filtrareProduse()">
+                <label class="btn btn-outline-primary" for="i_rad1">Dietetic (calorii &lt; 350)</label>
+
+                <input type="radio" class="btn-check" name="gr_rad" id="i_rad2" value="350:700" autocomplete="off"
+                    onchange="filtrareProduse()">
+                <label class="btn btn-outline-primary" for="i_rad2">Mediu (350 &le; calorii &lt; 700)</label>
+
+                <input type="radio" class="btn-check" name="gr_rad" id="i_rad3" value="700:1000000000"
+                    autocomplete="off" onchange="filtrareProduse()">
+                <label class="btn btn-outline-primary" for="i_rad3">Ridicat caloric (700 &le; calorii)</label>
+
+                <input type="radio" class="btn-check" name="gr_rad" id="i_rad4" value="toate" autocomplete="off"
+                    onchange="filtrareProduse()" checked>
+                <label class="btn btn-outline-primary" for="i_rad4">Toate</label>
             </div>
 
 
-            <label> Pret minim: <input type="range" id="inp-pret" value="0" min="0" max="70"> <span
+            <label> Pret minim: <input type="range" id="inp-pret" value="0" min="0" max="70" onchange="filtrareProduse()"> <span
                     id="infoRange">(0)</span></label>
             <label>Select simplu:
                 <select id="inp-categorie">
@@ -43,7 +47,12 @@
                         <% } %>
                 </select>
             </label>
-
+            <div class="form-floating">
+                <textarea class="form-control" id="i_textarea" placeholder=" " required onchange="filtrareProduse()"></textarea>
+                <label for="i_textarea">Descriere...</label>
+                <div class="invalid-feedback">Această descriere nu corespunde niciunui produs. Vă rugăm să introduceți o
+                    descriere validă.</div>
+            </div>
             <p>
                 <button id="filtrare">Filtreaza</button>
 
@@ -56,13 +65,16 @@
             <p id="p-suma">Apăsați Alt+"c" pentru suma preturilor produselor afișate. </p>
             <section id="produse">
                 <h2>Produse</h2>
+                <div id="mesaj-filtrare" style="display: none;">Nu există produse conform filtrării curente.</div>
                 <div class="grid-produse">
+
                     <% for( let prod of locals.produse) { %>
                         <article class="produs">
                             <h3 class="nume">Nume: <a href="/produs/<%-prod.id %>"><span class="val-nume"><%-
                                             prod.nume%></span></a></h3>
                             <div class="info-prod">
                                 <p class="pret">Pret: <span class="val-pret"><%- prod.pret%></span></p>
+                                <p class="descriere" style="display: none;"><%- prod.descriere%></p>
                                 <p class="calorii">Calorii: <span class="val-calorii"><%- prod.calorii%></span></p>
                                 <p class="gramaj">Gramaj: <span class="val-gramaj"><%- prod.gramaj%></span></p>
                             </div>
@@ -73,7 +85,8 @@
                             </figure>
                             <label class="selecteaza-cos">
                                 Selectează:<br />
-                                <input type="checkbox" class="select-cos" value="<%-prod.id %>" autocomplete="off">
+                                <input type="checkbox" class="select-cos" value="<%-prod.id %>" autocomplete="off"
+                                    onchange="filtrareProduse()">
                             </label>
                         </article>
                         <% }%>

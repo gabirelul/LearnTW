@@ -20,6 +20,8 @@
 }
 #navbar nav {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 #navbar nav li:hover a {
   transform: scale(1.2);
@@ -98,4 +100,14 @@
 #navbar nav ul li a #acasa-icon {
   display: flex;
   align-items: center;
+}
+#navbar nav #schimba_tema {
+  border: 0;
+  background: var(--blueDark);
+  color: var(--white);
+  height: 100%;
+  margin: 0.5rem;
+}
+#navbar nav #schimba_tema:hover {
+  background: var(--blueLight);
 }

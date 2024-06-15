@@ -46,6 +46,16 @@ app.use("/node_modules", express.static(path.join(__dirname, "node_modules")));
 
 app.use(express.static(__dirname));
 
+
+app.use(function(req, res, next) {
+    client.query("select * from unnest(enum_range(null::tipuri_produse))", function (err, rezOptiuni) {
+        res.locals.optiuniMeniu = rezOptiuni.rows;
+        next();
+    });
+});
+
+
+
 // ---------------------------- PRODUSE ----------------------------
 
 app.get("/produse", function (req, res) {

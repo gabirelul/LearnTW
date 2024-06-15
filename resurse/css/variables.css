@@ -1,18 +1,6 @@
 :root {
-    /* Colors */
-    --red: #d52b1e;
-    --yellow: #fed100;
-    --blueDark: #283044;
-    --blueLight: #78A1BB;
-    --cream: #EBF5EE;
 
-    --dark: #1c1c1c;
-    --white: #fff;
-    --black: #000;
-    --secondaryGrey: #A9A9A9;
-    --lightGrey: #e8e9eb;
-    --visitedLinks: #8a2be2;
-
+    --text-selection-color: #1805a9;
     --navHeight: 3rem;
 
     /* Fonts */
@@ -30,6 +18,11 @@
     --secondaryBig: 1rem;
     --secondaryMedium: .9rem;
     --secondarySmall: .5rem;
+}
+
+::selection {
+    color: var(--text-selection-color);
+    background: var(--yellow);
 }
 
 /* Space Grotesk Font */

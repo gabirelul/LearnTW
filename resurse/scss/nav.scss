@@ -1,7 +1,6 @@
 @import "../css/variables.css";
 
 #navbar {
-
     background-color: var(--dark);
     font-family: var(--regularFont);
     height: var(--navHeight);
@@ -25,6 +24,8 @@
 
     nav {
         display: flex;
+        justify-content: space-between;
+        align-items: center;
 
         li:hover a {
             transform: scale(1.2);
@@ -113,6 +114,16 @@
                         align-items: center;
                     }
                 }
+            }
+        }
+        #schimba_tema {
+            border: 0;
+            background: var(--blueDark);
+            color: var(--white);
+            height: 100%;
+            margin: .5rem;
+            &:hover {
+                background: var(--blueLight);
             }
         }
     }

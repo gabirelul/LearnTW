@@ -1,5 +1,38 @@
+$primary: rgb(102, 76, 76);
+$secondary: rgb(251, 187, 251);
+$dark-color: #1c1c1c;
+$light-color: #fff;
+$dark-color2: #040339;
+$light-color2: #dadada;
+$dark-color3: #000002;
+$light-color3: #f3e4e4;
+$light-color4: #999191;
+
 @use '../../node_modules/bootstrap/scss/bootstrap.scss' with 
 (
-    $primary: red,
-    $secondary:purple
-)
+    $primary: $primary,
+    $secondary: $secondary,
+    $body-bg: $light-color,
+    $body-color: $dark-color
+);
+
+
+.dark-mode {
+    background-color: $dark-color;
+    color: $light-color;
+
+    header {
+        background-color: $light-color2;
+        color: $dark-color2;
+    }
+}
+
+.light-mode {
+    background-color: $light-color3;
+    color: $dark-color3;
+
+    header {
+        background-color: $light-color4;
+        color: $dark-color3;
+    }
+}
