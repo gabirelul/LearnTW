@@ -17,20 +17,13 @@
                         <span id="acasa-text">Acasă</span>
                     </a>
                 </li>
-                <li><a>Produse</a>
-                    <ul>
-                        <li selected value="toate"><a href="/produse">Toate</a></li>
-                        <% for (let lis of locals.optiuniMeniu) { %>
-                            <li value="<%- lis.unnest %>"><a href="/produse?tip=<%- lis.unnest %>"><%- lis.unnest %></a>
-                            </li>
-                            <% } %>
-                    </ul>
+                <li><a href="/">Despre</a>
+                    
                 </li>
-                <li><a href="/galerie">Galerie</a>
+                <li><a href="/galerie-animata">Galerie</a>
                     <ul>
-                        <li><a href="/galerie_statica">Statica</a></li>
-                        <li><a href="/galerie_dinamica">Dinamica</a></li>
-
+                        <li><a href="/galerie-statica">Statica</a></li>
+                        <li><a href="/galerie-animata">Animata</a></li>
                     </ul>
                 </li>
                 <li><a>Produse</a>
@@ -44,7 +37,7 @@
 
                 </li>
             </ul>
-            <select id="theme-selector">
+            <select id="select_tema">
                 <option value="default">Default</option>
                 <option value="light">Light</option>
                 <option value="dark">Dark</option>

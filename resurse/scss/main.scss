@@ -185,71 +185,12 @@ body {
         color: blue;
       }
 
-      #grid-galerie {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-row-gap: 0.5em;
-        grid-column-gap: 0.5em;
-        counter-reset: nrimag 3;
-
-        img {
-          width: 100%;
-          transition: transform 1.25s ease;
-        }
-
-        figure {
-          margin: 1.2rem;
-          transition: transform 1.25s ease;
-
-          &:hover {
-            img {
-              transform: translateY(-10%) scale(1.3);
-            }
-
-            figcaption {
-              opacity: 1;
-              background-color: var(--blueLight);
-              color: var(--blueDark);
-            }
-          }
-        }
-
-        figure:nth-child(n + 6) {
-          grid-area: 2/4/3/4;
-        }
-
-        figcaption {
-          text-align: center;
-          counter-increment: nrimag 2;
-
-          &::before {
-            content: counter(nrimag, lower-alpha) ")";
-          }
-        }
-      }
-
-      @media screen and (max-width: 768px) {
-        #grid-galerie {
-          grid-template-columns: repeat(2, 1fr);
-
-          figure {
-            margin: 0.6rem;
-          }
-        }
-      }
-
-      @media screen and (max-width: 320px) {
-        #grid-galerie {
-          display: block;
-
-          figure {
-            margin: 0.2rem;
-          }
-        }
-      }
     }
 
     #section-2 {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
       i {
         font-size: 16px;
       }
@@ -423,71 +364,11 @@ body {
           min-width: 30%;
           max-width: 100%;
 
-          ::cue {
-            font-family: var(--regularFont);
-            font-size: 16px;
-            line-height: 1.5;
-            background: linear-gradient(to bottom,
-                var(--blueLight),
-                var(--blueDark));
-            color: transparent;
-            // -webkit-background-clip: text;
-            background-clip: text;
-            display: block;
-            white-space: pre-line;
+          ::cue([lang="ro"]) {
+            color: yellow;
+            background-color: rgba(0, 0, 0, 0.8);
           }
         }
-      }
-
-      #container-animatie {
-        position: relative;
-        overflow: hidden;
-        border: 1px solid black;
-        width: 100%;
-        height: 80%;
-        box-sizing: content-box;
-
-        #derulant {
-          display: flex;
-          flex-wrap: nowrap;
-          position: absolute;
-          animation-name: galerie-animation;
-          animation-direction: alternate;
-          animation-timing-function: linear;
-          animation-iteration-count: infinite;
-          animation-duration: 15s;
-
-          &>* {
-            flex-shrink: 0;
-            position: relative;
-          }
-
-          @keyframes galerie-animation {
-            0% {
-              left: 0px;
-            }
-
-            100% {
-              left: -600%;
-            }
-          }
-        }
-
-        figure:hover,
-        figcaption {
-          position: absolute;
-          bottom: 0;
-          width: 100%;
-          height: auto;
-          font-size: 1.5em;
-          background: rgba(200, 200, 200, 0.5);
-          text-align: center;
-        }
-      }
-
-      #container_animatie * {
-        height: 100%;
-        width: auto;
       }
     }
 

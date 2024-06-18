@@ -1,0 +1,23 @@
+<div id="grid-galerie">
+    <% counter = 0; %>
+    <% for (let imag of locals.imagini) {
+        d=new Date()
+        var v_timp=["00:00","01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"];
+        let timp = imag.timp.split("-");
+        if(imag.timp && (timp[0] <= v_timp[d.getHours()] && timp[1] > v_timp[d.getHours()]) && counter < 10) {
+            %>
+            <figure>
+                <picture>
+                    <source srcset="<%- imag.fisier_mic %>" media="(max-width:700px)"/>
+                    <source srcset="<%- imag.fisier_mediu %>" media="(max-width:1000px)"/>
+                    <img src="<%- imag.cale_imagine %>" alt="imagine">
+                </picture>
+                <figcaption class="caption-style"><%- imag.nume %></figcaption>
+            </figure>
+        <% } 
+            counter++;
+            if (counter >= 10) {   
+                break;
+            } 
+        }  %>
+</div>

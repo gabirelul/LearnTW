@@ -1,55 +1,65 @@
 {
-  "cale_galerie": "resurse/imagini/galerie",
-  "imagini": [
-    {
-      "fisier": "gabirelul_01.jpg",
-      "descriere": "Lamborghini Urus",
-      "luni": ["martie", "februarie", "noiembrie", "aprilie", "iunie", "mai"]
-    },
-    {
-      "fisier": "gabirelul_02.jpg",
-      "descriere": "BMW M3Competition",
-      "luni": ["ianuarie", "februarie", "iunie", "mai"]
-    },
-    {
-      "fisier": "gabirelul_03.jpg",
-      "descriere": "Mercedes-Benz C220",
-      "luni": ["ianuarie", "noiembrie", "iunie", "martie", "aprilie", "mai"]
-    },
-    {
-      "fisier": "gabirelul_04.jpg",
-      "descriere": "Chevrolet Camaro RS",
-      "luni": ["noiembrie", "aprilie", "mai"]
-    },
-    {
-      "fisier": "gabirelul_05.jpg",
-      "descriere": "Porsche 944s",
-      "luni": ["noiembrie", "aprilie", "mai"]
-    },
-    {
-      "fisier": "gabirelul_06.jpg",
-      "descriere": "Fiat 500L",
-      "luni": ["ianuarie", "februarie", "mai"]
-    },
-    {
-      "fisier": "gabirelul_07.jpg",
-      "descriere": "BMW S1000R",
-      "luni": ["iunie", "aprilie", "mai"]
-    },
-    {
-      "fisier": "gabirelul_08.jpg",
-      "descriere": "BMW S1000R",
-      "luni": ["iunie", "aprilie", "mai"]
-    },
-    {
-      "fisier": "gabirelul_09.jpg",
-      "descriere": "BMW S1000R",
-      "luni": ["iunie", "aprilie", "mai"]
-    },
-    {
-      "fisier": "gabirelul_10.jpg",
-      "descriere": "BMW S1000R",
-      "luni": ["iunie", "aprilie", "mai"]
-    }
-  ]
+	"cale_galerie":"resurse/imagini/galerie",
+	"imagini": [
+		{
+			"cale_imagine":"gabirelul_01.jpg",
+			"nume":"Lamborghini Urus",
+			"descriere": "Urus Performante",
+			"timp":"09:00-23:00"
+		},
+		{
+			"cale_imagine":"gabirelul_02.jpg",
+			"nume":"BMW M3 Competition",
+			"descriere": "M3 Competition",
+			"timp":"20:00-23:00"
+		},
+		{
+			"cale_imagine":"gabirelul_03.jpg",
+			"nume":"Mercedes C Class",
+			"descriere": "C Class",
+			"timp":"09:00-23:00"
+		},
+		{
+			"cale_imagine":"gabirelul_04.jpg",
+			"nume":"Chevrolet Camaro",
+			"descriere": "Classic Camaro",
+			"timp":"10:00-23:00"
+		},
+		{
+			"cale_imagine":"gabirelul_05.jpg",
+			"nume":"Porsche 944",
+			"descriere": "Classic Porsche",
+			"timp":"15:00-23:00"
+		},
+		{
+			"cale_imagine":"gabirelul_06.jpg",
+			"nume":"Fiat 500L",
+			"descriere": "Old Fiat 500L",
+			"timp":"14:00-23:00"
+		},
+		{
+			"cale_imagine":"gabirelul_07.jpg",
+			"nume":"BMW S1000R",
+			"descriere": "BMW Bike",
+			"timp":"20:00-23:00"
+		},
+		{
+			"cale_imagine":"gabirelul_08.jpg",
+			"nume":"Audi A5",
+			"descriere": "Red A5",
+			"timp":"21:00-23:00"
+		},
+		{
+			"cale_imagine":"gabirelul_09.jpg",
+			"nume":"Audi A5 + Urus",
+			"descriere": "Audi + Urus",
+			"timp":"10:00-14:00"
+		},
+		{
+			"cale_imagine":"gabirelul_10.jpg",
+			"nume":"Aston Martin DBX",
+			"descriere": "Aston Martin",
+			"timp":"15:00-23:00"
+		}
+	]
 }

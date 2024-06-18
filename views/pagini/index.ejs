@@ -20,26 +20,7 @@
     <div id="layout-responsive">
       <section id="section-1">
         <h2>Galeria</h2>
-        <button type="button" class="btn btn-primary btn-lg">Stil-1-mare</button>
-        <div id="grid-galerie">
-          <% 
-                var vLuni=["ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie", "august", "septembrie", "octombrie", "noiembrie", "decembrie"];
-                var d=new Date();
-                var lunaCurenta=vLuni[d.getMonth()];
-                for (let imag of locals.imagini) { 
-                    if (imag?.luni?.includes(lunaCurenta)) {
-                    %>
-                        <figure>
-                            <picture>
-                                <source srcset="<%= imag.fisier_mediu %>" media="(max-width:768px)"/>
-                                <img src="<%= imag.fisier %>" alt="masini" />
-                            </picture>
-                        
-                        <figcaption><%= imag.descriere%></figcaption>
-                        </figure>
-                <% } %>
-            <% } %>
-        </div>
+        <button type="button" class="btn btn-primary btn-lg">Stil 1 mare</button>
       </section>
 
       <section id="section-5">
@@ -62,41 +43,18 @@
 
       </section>
       <section id="section-6">
-        <%
-        // <div id="video-vtt">
-        //   <video controls poster="resurse/videos/img_poster.jpg" preload="auto">
-        //     <source src="resurse/videos/video_vtt.mp4" type="video/mp4">
-        //     <source src="resurse/videos/video_vtt.ogv" type="video/ogg">
-        //     <track src="resurse/videos/video_vtt_captions.vtt" kind="captions" srclang="ro" label="romana" />
-        //     <track src="resurse/videos/video_vtt_captions_en.vtt" kind="captions" srclang="en" label="engleza" />
-        //   </video>
-        // </div>
-        %>
-        <div id="container-animatie">
-        <div id="derulant">
-          <figure>
-            <img src="/resurse/imagini/galerie/gabirelul_02.jpg" alt="car">
-            <figcaption>Lamborghini</figcaption>
-          </figure>
-          <figure>
-            <img src="/resurse/imagini/galerie/gabirelul_04.jpg" alt="car">
-            <figcaption>Lamborghini</figcaption>
-          </figure>
-          <figure>
-            <img src="/resurse/imagini/galerie/gabirelul_06.jpg" alt="car">
-            <figcaption>Lamborghini</figcaption>
-          </figure>
-          <figure>
-            <img src="/resurse/imagini/galerie/gabirelul_08.jpg" alt="car">
-            <figcaption>Lamborghini</figcaption>
-          </figure>
-          <figure>
-            <img src="/resurse/imagini/galerie/gabirelul_10.jpg" alt="car">
-            <figcaption>Lamborghini</figcaption>
-          </figure>
-
+        
+        <div id="video-vtt">
+        <video controls poster="resurse/videos/img_poster.jpg" preload="auto">
+        <source src="resurse/videos/video_vtt.mp4" type="video/mp4">
+        <source src="resurse/videos/video_vtt.ogv" type="video/ogg">
+        <track src="resurse/videos/video_vtt_captions.vtt" kind="captions" srclang="ro" label="romana" default >
+        <track src="resurse/videos/video_vtt_captions_en.vtt" kind="captions" srclang="en" label="engleza">
+        </video>
         </div>
-      </div>
+        
+          <%- include('../fragmente/galerie-statica.ejs') %>
+           
       </section>
       <section id="section-7">
         <h2><strong>Ce ne deosebește?</strong></h2>
@@ -119,7 +77,7 @@
           aici pentru a vă oferi ajutorul și suportul necesar. De la recomandări de produse până la
           asistență
           post-vânzare, suntem aici pentru dumneavoastră.</p>
-        <a id="hoverEffect" href="./resurse/imagini/name.jpg" download="oferta.jpg">Descarcă oferta
+        <a id="hoverEffect" href="./resurse/imagini/oferta.jpg" download="oferta.jpg">Descarcă oferta
           noastră</a>
       </section>
       <section id="section-3">
@@ -255,40 +213,39 @@
             <tr>
               <th>Ziua</th>
               <th>Interval Orar</th>
-              <th>Zona Acoperită</th>
-              <th>Tarif de Livrare</th>
+              <th>Locatie</th>
+              <th>Tarif</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>Luni</td>
-              <td>10:00 - 11:00</td>
-              <td>Bucuresti</td>
-              <td>Gratuit</td>
+              <td>09:00 - 12:00</td>
+              <td>Baneasa</td>
+              <td>50 lei</td>
             </tr>
             <tr>
               <td>Marti</td>
-              <td>17:00 - 19:00</td>
-              <td>Cluj-Napoca</td>
-              <td>5 lei</td>
+              <td>09:00 - 12:00</td>
+              <td>Pipera</td>
+              <td>50 lei</td>
             </tr>
             <tr>
               <td>Miercuri</td>
-              <td>14:00 - 16:00</td>
-              <td>Brasov</td>
-              <td>5 lei</td>
+              <td>09:00 - 11:00</td>
+              <td>Lujerului</td>
+              <td>50 lei</td>
             </tr>
             <tr>
               <td>Restul Zilelor</td>
-              <td>-</td>
-              <td>Toate Zonele</td>
-              <td>20 lei</td>
+              <td>09:00 - 12:00</td>
+              <td>Drumul Taberei</td>
+              <td>30 lei</td>
             </tr>
           </tbody>
         </table>
         <div class="text-coloane">
-            <p>La ReFresh, fiecare comandă plasată te aduce mai aproape de premii grozave! Participi automat la tombolele noastre săptămânale, unde poți câștiga vouchere de cumpărături, pachete cadou cu produse sănătoase și multe alte surprize. Cu fiecare achiziție, ai șansa să câștigi și să te bucuri de avantajele ReFresh!
-            Știm cât de important este pentru tine să primești alimentele proaspete și la timp. De aceea, ne asigurăm că toate comenzile sunt procesate rapid și livrate direct la ușa ta, în condiții optime.</p>
+            <p>RaceBox este un brand cunoscut pentru oferirea unor soluții inovatoare și eficiente pentru pasionații de curse auto și track day enthusiasts. Reprezentanța RaceBox oferă o gamă largă de servicii și produse, inclusiv sisteme avansate de telemetrie, camere pentru mașini și accesorii de cursă, toate proiectate să îmbunătățească experiența de conducere și să ofere date precise și detaliate pentru îmbunătățirea performanței pe circuit.Sisteme de Telemetrie: RaceBox oferă dispozitive de înaltă precizie care înregistrează date despre performanța vehiculului, viteza, accelerația și multe alte parametri. Acestea sunt esențiale pentru pilotii care doresc să își analizeze și să își îmbunătățească stilul de conducere și performanțele pe circuit.</p>
         </div>
       </section>
       <section id="section-8">

@@ -2,34 +2,36 @@
 <html lang="ro">
 
 <head>
+    <meta name="keywords"
+        content="BMW, Automobile, Performanta, Inovatie, Eleganta, Audi, Masini de lux, Tehnologie avansata, Confort, Porsche, Sportivitate, Design iconic, Performanta de varf, Exclusivitate, Lamborghini, Supercaruri, Viteza extrema, Design agresiv, Bucuresti, Romania, Sector 1 2 3 4 5 6, Reprezentanta">
     <meta name="description"
-        content="Cofetaria Dulcelind ofera prajituri, torturi, produse de patiserie cu optiunea de achizitie online si livrare prin curier.">
-    <meta name="keywords" content="cofetarie, Dulcelind, prajituri, torturi, dulce, pateuri, produse">
-    <link rel="stylesheet" href="/resurse/css/produse.css" type="text/css" />
-    <title>Cofetăria Dulcelind - home</title>
-    <%- include("../fragmente/head") %>
-        <script src="/resurse/js/produse.js"></script>
+        content="Vanzari/inchirieri auto (Audi, Mercedes, BMW). Consultanta. Schimb cu masina veche. Livram si la domiciliu in Bucuresti.">
+    <meta name="author" content="Alex Chera">
 
+    <title>Produse</title>
+    <%- include("../fragmente/head") %>
+    
 </head>
 
 <body>
     <%- include("../fragmente/header") %>
 
         <main>
-            <!-- <%- locals.optiuniMeniu[1].unnest %> -->
+            
+            
             <label> Nume: <input type="text" id="inp-nume" onchange="filtrareProduse()"></label>
-            <div class="btn-group" role="group" aria-label="Calorii">
-                <input type="radio" class="btn-check" name="gr_rad" id="i_rad1" value="0:350" autocomplete="off"
+            <div class="btn-group" role="group" aria-label="cc">
+                <input type="radio" class="btn-check" name="gr_rad" id="i_rad1" value="0:2000" autocomplete="off"
                     onchange="filtrareProduse()">
-                <label class="btn btn-outline-primary" for="i_rad1">Dietetic (calorii &lt; 350)</label>
+                <label class="btn btn-outline-primary" for="i_rad1">Motor Mic (cc &lt; 2000)</label>
 
-                <input type="radio" class="btn-check" name="gr_rad" id="i_rad2" value="350:700" autocomplete="off"
+                <input type="radio" class="btn-check" name="gr_rad" id="i_rad2" value="2000:4000" autocomplete="off"
                     onchange="filtrareProduse()">
-                <label class="btn btn-outline-primary" for="i_rad2">Mediu (350 &le; calorii &lt; 700)</label>
+                <label class="btn btn-outline-primary" for="i_rad2">Motor Mediu (2000 &le; cc &lt; 4000)</label>
 
-                <input type="radio" class="btn-check" name="gr_rad" id="i_rad3" value="700:1000000000"
+                <input type="radio" class="btn-check" name="gr_rad" id="i_rad3" value="4000:1000000000"
                     autocomplete="off" onchange="filtrareProduse()">
-                <label class="btn btn-outline-primary" for="i_rad3">Ridicat caloric (700 &le; calorii)</label>
+                <label class="btn btn-outline-primary" for="i_rad3">Motor Mare (4000 &le; cc)</label>
 
                 <input type="radio" class="btn-check" name="gr_rad" id="i_rad4" value="toate" autocomplete="off"
                     onchange="filtrareProduse()" checked>
@@ -37,8 +39,8 @@
             </div>
 
 
-            <label> Pret minim: <input type="range" id="inp-pret" value="0" min="0" max="70" onchange="filtrareProduse()"> <span
-                    id="infoRange">(0)</span></label>
+            <label> Pret minim: <input type="range" id="inp-pret" value="0" min="0" max="90000"
+                    onchange="filtrareProduse()"> <span id="infoRange">(0)</span></label>
             <label>Select simplu:
                 <select id="inp-categorie">
                     <option id="sel-toate" selected value="toate">toate</option>
@@ -48,17 +50,28 @@
                 </select>
             </label>
             <div class="form-floating">
-                <textarea class="form-control" id="i_textarea" placeholder=" " required onchange="filtrareProduse()"></textarea>
+                <textarea class="form-control" id="i_textarea" placeholder=" " required
+                    onchange="filtrareProduse()"></textarea>
                 <label for="i_textarea">Descriere...</label>
                 <div class="invalid-feedback">Această descriere nu corespunde niciunui produs. Vă rugăm să introduceți o
                     descriere validă.</div>
             </div>
             <p>
-                <button id="filtrare">Filtreaza</button>
-
-                <button id="resetare">Reseteaza</button><br />
-                <button id="sortCrescNume">Sorteaza crescator dupa pret si nume</button>
-                <button id="sortDescrescNume">Sorteaza descrescator dupa pret si nume</button>
+                <p>Număr total de produse vizibile: <span id="numar-produse-vizibile"></span></p>
+                <div class="d-flex justify-content-between">
+                    <button id="sortCrescNume" class="btn btn-primary">
+                        <span class="d-none d-md-inline">Sorteaza crescator dupa pret si nume</span>
+                        <span class="bi bi-arrow-up d-md-none"></span>
+                    </button>
+                    <button id="sortDescrescNume" class="btn btn-primary">
+                        <span class="d-none d-md-inline">Sorteaza descrescator dupa pret si nume</span>
+                        <i class="bi bi-arrow-down d-md-none"></i>
+                    </button>
+                    <button id="resetare" class="btn btn-primary">
+                        <span class="d-none d-md-inline">Reseteaza</span>
+                        <span class="bi bi-arrow-clockwise d-md-none"></span>
+                    </button>
+                </div>
 
             </p>
 
@@ -67,20 +80,22 @@
                 <h2>Produse</h2>
                 <div id="mesaj-filtrare" style="display: none;">Nu există produse conform filtrării curente.</div>
                 <div class="grid-produse">
-
+                    
                     <% for( let prod of locals.produse) { %>
                         <article class="produs">
+                            
                             <h3 class="nume">Nume: <a href="/produs/<%-prod.id %>"><span class="val-nume"><%-
                                             prod.nume%></span></a></h3>
                             <div class="info-prod">
                                 <p class="pret">Pret: <span class="val-pret"><%- prod.pret%></span></p>
                                 <p class="descriere" style="display: none;"><%- prod.descriere%></p>
-                                <p class="calorii">Calorii: <span class="val-calorii"><%- prod.calorii%></span></p>
-                                <p class="gramaj">Gramaj: <span class="val-gramaj"><%- prod.gramaj%></span></p>
+                                <p class="cc">CC: <span class="val-cc"><%- prod.cc%></span></p>
+                                <p class="gramaj">Tip: <span class="val-gramaj"><%- prod.tip_produs%></span></p>
                             </div>
-                            <p class="categorie">Categorie:<span class="val-categorie"><%- prod.categorie%></span></p>
+                            <p class="categorie">Categorie: <span class="val-categorie"><%- prod.categorie%></span></p>
+                            
                             <figure>
-                                <a href="/produs/<%-prod.id %>"><img src="/resurse/imagini/produse/<%- prod.imagine %>"
+                                <a href="/produs/<%-prod.id %>"><img src="/resurse/imagini/produse/<%- prod.imagine %>/img-1.jpg"
                                         style="width:50%;height:auto;" alt="[imagine <%- prod.nume %>]" /></a>
                             </figure>
                             <label class="selecteaza-cos">
@@ -88,13 +103,29 @@
                                 <input type="checkbox" class="select-cos" value="<%-prod.id %>" autocomplete="off"
                                     onchange="filtrareProduse()">
                             </label>
+                            
+                            <div class="produs-btn">
+                                <button class="keep-button" title="Pinnuieste acest produs">
+                                    <i class="bi bi-pin"></i>
+                                </button>
+                                <button class="delete-button" title="Șterge temporar acest produs">
+                                    <i class="bi bi-trash-fill"></i>
+                                </button>
+                                <button class="sesiune-button" onclick="deleteProductSession(this)">
+                                    <i class="bi bi-x-octagon-fill"></i>
+                                </button>
+                                
+                            </div>
+                            
+
+                            <p class="cmmpret" style="color: green; font-style: italic; display: none;">Cel mai ieftin produs.</p>
                         </article>
                         <% }%>
+
                 </div>
             </section>
         </main>
-
         <%- include("../fragmente/footer") %>
+        <script src="/resurse/js/produse.js"></script>
 </body>
-
 </html>

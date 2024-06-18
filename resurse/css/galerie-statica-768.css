@@ -1,0 +1,8 @@
+#grid-galerie {
+    display: block;
+}
+
+#grid-galerie img {
+    width: 20%;
+    height: 20%;
+}

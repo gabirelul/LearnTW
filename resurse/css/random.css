@@ -1,0 +1,208 @@
+@charset "UTF-8";
+@media screen and (max-width: 900px) {
+  .responsive {
+    width: 100%;
+    font-size: 11px;
+    display: block;
+  }
+
+  .responsive thead,
+  .responsive tbody,
+  .responsive tr,
+  .responsive th,
+  .responsive td {
+    display: block;
+  }
+
+  .responsive thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .responsive tr {
+    border: 1px solid #ccc;
+  }
+
+  .responsive td {
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+    text-align: right;
+  }
+
+  .responsive td:before {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: bold;
+  }
+
+  .responsive td:nth-of-type(1):before {
+    content: "Ziua";
+  }
+
+  .responsive td:nth-of-type(2):before {
+    content: "Interval Orar";
+  }
+
+  .responsive td:nth-of-type(3):before {
+    content: "Zona Acoperită";
+  }
+
+  .responsive td:nth-of-type(4):before {
+    content: "Tarif de Livrare";
+  }
+
+  .text-coloane {
+    column-count: 1;
+    column-width: 50px;
+    column-gap: 30px;
+    column-rule-style: solid;
+    column-rule-width: 1px;
+    column-rule-color: #000000;
+  }
+}
+
+.responsive {
+  color: var(--blueDark);
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.responsive th,
+td {
+  border: 1px solid;
+}
+
+.text-coloane {
+  column-count: 2;
+  column-width: 50px;
+  column-gap: 30px;
+  column-rule-style: solid;
+  column-rule-width: 1px;
+  column-rule-color: #ff0202;
+}
+
+#mesaj-filtrare {
+  font-size: 1.1em;
+  color: rgb(150, 129, 129);
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 2px dashed rgb(205, 155, 155);
+  background-color: #f5e5e5;
+}
+
+#select_tema {
+  padding: 2px;
+  font-size: 14px;
+  border: 2px solid #bbbbbb;
+  border-radius: 10px;
+  background-color: #9ebbde;
+  color: #333;
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-radius 0.3s ease;
+}
+
+
+#select_tema:hover {
+  background-color: #afc5e1;
+  border-radius: 12px;
+}
+
+.carousel-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.carousel {
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 300px;
+}
+
+.carousel h2 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+.carousel-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.imag-produs img {
+  max-width: 100%;
+  height: auto;
+}
+
+.produs-btn {
+  display: flex;
+  gap: 10px;
+}
+
+.keep-button,
+.delete-button,
+.sesiune-button {
+  cursor: pointer;
+  color: var(--dark);
+  background-color: transparent;
+  border: 0;
+}
+
+.keep-button:hover {
+  color: var(--blueLight);
+}
+
+.delete-button:hover {
+  color: var(--blueLight);
+}
+
+.sesiune-button:hover {
+  color: var(--blueLight);
+}
+
+.keep-button i,
+.delete-button i,
+.sesiune-button i {
+  font-size: 1.5rem;
+}
+
+.text-coloane {
+  column-count: 2;
+  column-width: 50px;
+  column-gap: 30px;
+  column-rule-style: solid;
+  column-rule-width: 1px;
+  column-rule-color: #ff0202;
+}
+
+#mesaj-filtrare {
+  font-size: 1.1em;
+  color: rgb(150, 129, 129);
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 2px dashed rgb(205, 155, 155);
+  background-color: #f5e5e5;
+}
+
+@media screen and (max-width: 768px) {
+  .text-coloane {
+    column-count: 1;
+    text-align: center;
+  }
+}

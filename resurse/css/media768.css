@@ -20,6 +20,7 @@
 }
 #navbar .open {
   display: flex;
+  flex-direction: column;
   height: auto;
   min-height: 35vh;
 }

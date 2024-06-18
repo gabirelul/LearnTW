@@ -1,37 +1,58 @@
 <!DOCTYPE html>
-<html  lang="ro">
-    <head>
-        <meta name="description" content="Cofetaria Dulcelind ofera prajituri, torturi, produse de patiserie cu optiunea de achizitie online si livrare prin curier.">
-        <meta name="keywords" content="cofetarie, Dulcelind, prajituri, torturi, dulce, pateuri, produse">
-        
-        <title>Cofetăria Dulcelind - home</title>
-        <%- include("../fragmente/head") %>     
+<html lang="ro">
+
+<head>
+    <%- include("../fragmente/head") %>
+    <meta name="keywords"
+        content="BMW, Automobile, Performanta, Inovatie, Eleganta, Audi, Masini de lux, Tehnologie avansata, Confort, Porsche, Sportivitate, Design iconic, Performanta de varf, Exclusivitate, Lamborghini, Supercaruri, Viteza extrema, Design agresiv, Bucuresti, Romania, Sector 1 2 3 4 5 6, Reprezentanta">
+    <meta name="description"
+        content="Vanzari/inchirieri auto (Audi, Mercedes, BMW). Consultanta. Schimb cu masina veche. Livram si la domiciliu in Bucuresti.">
+    <meta name="author" content="Alex Chera">
+    <title>Produs</title>
         <link href="/resurse/css/produs.css" type="text/css" rel="stylesheet" />
-    </head>
-    <body>
+</head>
+
+<body>
     <%- include("../fragmente/header") %>
 
-    <main>
-        <section>
-            <h2>Pagină produs</h2>
+        <main>
+            <section>
                 <article id="art-produs">
                     <h3><span class="nume"><%- locals.prod.nume %></span></h3>
                     <p>Pret: <span class="pret"><%- locals.prod.pret %> </span></p>
                     <p>Descriere: <span class="descriere"><%- locals.prod.descriere %> </span></p>
-                    <p>Ingrediente: <span class="ingrediente"><%- locals.prod.ingrediente %> </span></p>
-                    <p>Calorii: <span class="calorii"><%- locals.prod.calorii %> </span></p>
-                    <p>Gramaj: <span class="gramaj"><%- locals.prod.gramaj %> </span></p>
+                    <p>Dotari: <span class="dotari"><%- locals.prod.dotari %> </span></p>
+                    <p>cc: <span class="cc"><%- locals.prod.cc %> </span></p>
                     <p>Categorie: <span class="categorie"><%- locals.prod.categorie %> </span></p>
-                    <p>Pentru diabetici: <span class="pt_diabetici"><%- locals.prod.pt_diabetici %> </span></p>
-                    <p>Data adăugare: <span class="categorie"><%- locals.prod.data_adaugare %> </span></p>
+                    <p>Volan dreapta: <span class="volan_dreapta"><%- locals.prod.volan_dreapta %> </span></p>
+                    <p>Data adăugare: <span class="data_adaugare"><%- locals.prod.data_adaugare %> </span></p>
                     <figure class="imag-produs">
-                        <img  src="/resurse/imagini/produse/<%- locals.prod.imagine %>" alt="[imagine <%- locals.prod.nume %>]" />
-                    </figure>    
+                        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                            <!-- Carousel Inner with Dynamic Images -->
+                            <div class="carousel-inner">
+                                <% for(let i = 1; i <= 3; i++) { %>
+                                    <div class="carousel-item <%= i === 1 ? 'active' : '' %>">
+                                        <img src="/resurse/imagini/produse/<%- locals.prod.imagine %>/img-<%= i %>.jpg" class="d-block w-100" alt="Imagine <%= i %>">
+                                    </div>
+                                <% } %>
+                            </div>
+                            <!-- Controls for navigating through the carousel -->
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </figure>
                 </article>
-            
-        </section>
-    </main>
 
-    <%- include("../fragmente/footer") %>
-    </body>
+            </section>
+        </main>
+
+        <%- include("../fragmente/footer") %>
+</body>
+
 </html>

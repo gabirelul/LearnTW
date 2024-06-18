@@ -8,14 +8,15 @@ $dark-color3: #000002;
 $light-color3: #f3e4e4;
 $light-color4: #999191;
 
-@use '../../node_modules/bootstrap/scss/bootstrap.scss' with 
-(
+$border-radius: 8px;
+
+@use '../../node_modules/bootstrap/scss/bootstrap.scss' with (
     $primary: $primary,
     $secondary: $secondary,
     $body-bg: $light-color,
-    $body-color: $dark-color
+    $body-color: $dark-color,
+    $border-radius: $border-radius
 );
-
 
 .dark-mode {
     background-color: $dark-color;
@@ -24,6 +25,18 @@ $light-color4: #999191;
     header {
         background-color: $light-color2;
         color: $dark-color2;
+    }
+
+    .btn {
+        background-color: $primary;
+        color: $light-color;
+        border-color: $primary;
+
+        &:hover,
+        &:focus {
+            background-color: darken($primary, 10%);
+            border-color: darken($primary, 10%);
+        }
     }
 }
 
@@ -34,5 +47,17 @@ $light-color4: #999191;
     header {
         background-color: $light-color4;
         color: $dark-color3;
+    }
+
+    .btn {
+        background-color: $secondary;
+        color: $dark-color3;
+        border-color: $secondary;
+
+        &:hover,
+        &:focus {
+            background-color: lighten($secondary, 10%);
+            border-color: lighten($secondary, 10%);
+        }
     }
 }

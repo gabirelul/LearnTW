@@ -61,6 +61,12 @@
     transform: scaleY(1);
   }
 }
+#navbar nav ul li ul li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 #navbar nav ul li ul li::before {
   content: "";
   position: absolute;

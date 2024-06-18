@@ -105,15 +105,15 @@ Cerinte individuale:
 
 ```Etapa 5
 
-- galerie-statica []
+- galerie-statica [y]
     - Detalii [y]
-    - imaginile care indeplinesc criteriul []
+    - imaginile care indeplinesc criteriul [y]
     - aceleasi dimensiuni [y]
     - counter [y]
     - se intinde pe toata latimea [y]
     - forma: 
-        - nr max imagini = 10 []
-        - pe ecran mare spatii pe 2/2 & 2/3 []
+        - nr max imagini = 10 [y]
+        - pe ecran mare spatii pe 2/2 & 2/3 [y]
         - ecran mediu 2 coloane [y]
         - ecran mic o coloana [y]
     - tranzitie [y]
@@ -121,21 +121,21 @@ Cerinte individuale:
 
 - Compilare automata scss [y]
 
-- Customizare Bootstrap
--
--
--
--
--
--
--
+- Customizare Bootstrap [y]
 
-- Conectare Bootstrap
+- Corectare Bootstrap [y]
 
 - Efecte CSS 
+- duotone [y]
+- reflexie []
+- text pe coloane [y] > #section-2
+- selection [y] > variables ::selection 
+- background fix la scroll [TODO]
+- tabel responsive [y] > #section-2 > .responsive
+- stilizare hr [y]
 
-- galerie-animata []
-- efect-css-reflexie-text []
+- galerie-animata [TODO]
+- efect-css-reflexie-text [TODO]
 - efect-css-duotone [y]
 - efect-css-stilizare-hr [y]
 
