@@ -19,9 +19,19 @@
   <main>
     <div id="layout-responsive">
       <section id="section-1">
-        <h2>Galeria</h2>
-        <button type="button" class="btn btn-primary btn-lg">Stil 1 mare</button>
-      </section>
+        <% if (oferta) { %>
+            <div class="oferta">
+                <h2>Current Offer</h2>
+                <p>Category: <%= oferta.categorie %></p>
+                <p>Discount: <%= oferta.reducere %>%</p>
+                <p>Valid From: <%= oferta["data-incepere"] %> To: <%= oferta["data-finalizare"] %></p>
+                <img src="<%= oferta.imagine %>" alt="Car Image" style="width: 300px; height: auto;">
+            </div>
+        <% } else { %>
+            <p>Nicio oferta valabila</p>
+        <% } %>
+    </section>
+    
 
       <section id="section-5">
         <div class="efect-css-duotone">
@@ -52,9 +62,6 @@
         <track src="resurse/videos/video_vtt_captions_en.vtt" kind="captions" srclang="en" label="engleza">
         </video>
         </div>
-        
-          <%- include('../fragmente/galerie-statica.ejs') %>
-           
       </section>
       <section id="section-7">
         <h2><strong>Ce ne deosebește?</strong></h2>

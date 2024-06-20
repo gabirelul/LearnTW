@@ -206,3 +206,40 @@ td {
     text-align: center;
   }
 }
+
+/* BG FIX */
+.bg-fix {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  animation: schimbare-background 14s linear infinite;
+}
+
+@keyframes schimbare-background {
+
+  0%,
+  100% {
+    background-image: url("/resurse/imagini/bg-img.jpg");
+  }
+
+  50% {
+    background-image: url("/resurse/imagini/bg-img.jpg");
+  }
+}
+
+#video-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+}
+
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+}

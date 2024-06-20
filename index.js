@@ -77,30 +77,216 @@ app.get("/produse", function (req, res) {
     });
 })
 
+// ----------- Produse similare
+
+// app.get("/produs/:id", function (req, res) {
+//     client.query(`select * from masini where id=${req.params.id}`, function (err, rez) {
+//         if (err) {
+//             console.log(err);
+//             afisareEroare(res, 2);
+//         }
+//         else {
+//             res.render("pagini/produs", { prod: rez.rows[0] })
+//         }
+//     })
+// })
+
 
 app.get("/produs/:id", function (req, res) {
     client.query(`select * from masini where id=${req.params.id}`, function (err, rez) {
         if (err) {
             console.log(err);
             afisareEroare(res, 2);
+        } else {
+            let produs = rez.rows[0];
+            client.query(`select * from masini where id != ${req.params.id} and tip_produs='${produs.tip_produs}' limit 3`, function (err, rezSimilare) {
+                if (err) {
+                    console.log(err);
+                    afisareEroare(res, 2);
+                } else {
+                    res.render("pagini/produs", { prod: produs, produse_similare: rezSimilare.rows });
+                }
+            });
         }
-        else {
-            res.render("pagini/produs", { prod: rez.rows[0] })
-        }
-    })
-})
+    });
+});
 
-function normalizeString(str) {
-    const diacriticsMap = {
-        'ă': 'a', 'â': 'a', 'î': 'i', 'ș': 's', 'ț': 't',
-        'Ă': 'A', 'Â': 'A', 'Î': 'I', 'Ș': 'S', 'Ț': 'T'
-    };
-    return str.replace(/[ăâîșțĂÂÎȘȚ]/g, match => diacriticsMap[match]);
+// -------------------------------
+
+// app.get(["/", "/home", "/index"], function (req, res) {
+//     let oferte = JSON.parse(fs.readFileSync(path.join(__dirname, "resurse/json/oferte.json")));
+//     let ofertaCurenta = oferte.oferte[0]; // Assuming the first element is the latest offer
+//     res.render("pagini/index", { ip: req.ip, imagini: obGlobal.obImagini.imagini, oferta: ofertaCurenta });
+// });
+
+app.get(["/", "/home", "/index"], function (req, res) {
+    let oferte = JSON.parse(fs.readFileSync(path.join(__dirname, "resurse/json/oferte.json")));
+    let ofertaCurenta = oferte.oferte[0];
+    res.render("pagini/index", { ip: req.ip, imagini: obGlobal.obImagini.imagini, oferta: ofertaCurenta });
+});
+
+const T = 0.5; //minute
+
+function generateNewOffer() {
+    const categoriesQuery = "select * from unnest(enum_range(null::categ_masini))";
+    client.query(categoriesQuery, (err, result) => {
+        if (err) {
+            console.error("Error fetching categories", err);
+            return;
+        }
+
+        let categories = result.rows.map(row => row.unnest);
+        let currentOffers = JSON.parse(fs.readFileSync(path.join(__dirname, "resurse/json/oferte.json"))).oferte;
+
+        let lastCategory = currentOffers.length > 0 ? currentOffers[0].categorie : null;
+        let availableCategories = categories.filter(cat => cat !== lastCategory);
+
+        if (availableCategories.length === 0) {
+            console.error("No available categories to choose from.");
+            return;
+        }
+
+        let newCategory = availableCategories[Math.floor(Math.random() * availableCategories.length)];
+        let newDiscount = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50][Math.floor(Math.random() * 10)];
+        let now = moment();
+
+        // Fetch the image URL for the selected category
+        client.query("SELECT * FROM masini WHERE categorie = $1 LIMIT 1", [newCategory], (err, res) => {
+            if (err) {
+                console.error("Error fetching car details", err);
+                return;
+            }
+
+            if (res.rows.length === 0) {
+                console.error("No car found for the selected category.");
+                return;
+            }
+
+            let car = res.rows[0];
+
+            let newOffer = {
+                categorie: newCategory,
+                "data-incepere": now.format("YYYY-MM-DD HH:mm:ss"),
+                "data-finalizare": now.add(T, 'minutes').format("YYYY-MM-DD HH:mm:ss"),
+                reducere: newDiscount,
+                image_url: car.image_url // Ensure this column exists in your database
+            };
+
+            currentOffers.unshift(newOffer);
+
+            fs.writeFileSync(path.join(__dirname, "resurse/json/oferte.json"), JSON.stringify({ oferte: currentOffers }, null, 2));
+
+            console.log("New offer generated:", newOffer);
+        });
+    });
 }
+
+// function generateNewOffer() {
+//     const categoriesQuery = "select * from unnest(enum_range(null::tipuri_masini))";
+//     client.query(categoriesQuery, (err, result) => {
+//         if (err) {
+//             console.error("Error fetching categories", err);
+//             return;
+//         }
+
+//         let categories = result.rows.map(row => row.unnest);
+//         let currentOffers = JSON.parse(fs.readFileSync(path.join(__dirname, "resurse/json/oferte.json"))).oferte;
+
+//         let lastCategory = currentOffers.length > 0 ? currentOffers[0].categorie : null;
+//         let availableCategories = categories.filter(cat => cat !== lastCategory);
+
+//         let newCategory = availableCategories[Math.floor(Math.random() * availableCategories.length)];
+//         let newDiscount = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50][Math.floor(Math.random() * 10)];
+//         let now = moment();
+
+//         // Fetch the image URL for the selected category
+//         client.query(`SELECT * FROM masini WHERE categorie = '${newCategory}' LIMIT 1`, (err, res) => {
+//             if (err) {
+//                 console.error("Error fetching car details", err);
+//                 return;
+//             }
+
+//             let car = res.rows[0];
+
+//             let newOffer = {
+//                 categorie: newCategory,
+//                 "data-incepere": now.format("YYYY-MM-DD HH:mm:ss"),
+//                 "data-finalizare": now.add(T, 'minutes').format("YYYY-MM-DD HH:mm:ss"),
+//                 reducere: newDiscount,
+//                 imagine: car.imagine 
+//             };
+
+//             currentOffers.unshift(newOffer);
+
+//             fs.writeFileSync(path.join(__dirname, "resurse/json/oferte.json"), JSON.stringify({ oferte: currentOffers }, null, 2));
+
+//             console.log("New offer generated:", newOffer);
+//         });
+//     });
+// }
+
+// function generateNewOffer() {
+//     const categoriesQuery = "select * from unnest(enum_range(null::categ_masini))";
+//     client.query(categoriesQuery, (err, result) => {
+//         if (err) {
+//             console.error("Error fetching categories", err);
+//             return;
+//         }
+
+//         let categories = result.rows.map(row => row.unnest);
+//         let currentOffers = JSON.parse(fs.readFileSync(path.join(__dirname, "resurse/json/oferte.json"))).oferte;
+
+//         let lastCategory = currentOffers.length > 0 ? currentOffers[0].categorie : null;
+//         let availableCategories = categories.filter(cat => cat !== lastCategory);
+
+//         if (availableCategories.length === 0) {
+//             console.error("No available categories to choose from.");
+//             return;
+//         }
+
+//         let newCategory = availableCategories[Math.floor(Math.random() * availableCategories.length)];
+//         let newDiscount = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50][Math.floor(Math.random() * 10)];
+//         let now = moment();
+
+//         // Fetch the image URL for the selected category
+//         client.query("SELECT * FROM masini WHERE categorie = $1 LIMIT 1", [newCategory], (err, res) => {
+//             if (err) {
+//                 console.error("Error fetching car details", err);
+//                 return;
+//             }
+
+//             if (res.rows.length === 0) {
+//                 console.error("No car found for the selected category.");
+//                 return;
+//             }
+
+//             let car = res.rows[0];
+
+//             let newOffer = {
+//                 categorie: newCategory,
+//                 "data-incepere": now.format("YYYY-MM-DD HH:mm:ss"),
+//                 "data-finalizare": now.add(T, 'minutes').format("YYYY-MM-DD HH:mm:ss"),
+//                 reducere: newDiscount,
+//                 imagine: car.imagine // Ensure this column exists in your database
+//             };
+
+//             currentOffers.unshift(newOffer);
+
+//             fs.writeFileSync(path.join(__dirname, "resurse/json/oferte.json"), JSON.stringify({ oferte: currentOffers }, null, 2));
+
+//             console.log("New offer generated:", newOffer);
+//         });
+//     });
+// }
+
+
+setInterval(generateNewOffer, T * 60 * 1000);
+
+
+
 
 
 // -------------------------------------------------------------------
-
 
 // app.get("/", function (req, res) {
 //     res.sendFile(__dirname + "/index.html")
@@ -140,6 +326,15 @@ app.get("/galerie-animata", function (req, res) {
         res.render("pagini/galerie-animata", { produse: rez.rows, imagini: obGlobal.obImagini.imagini });
     });
 });
+
+app.get("/galerie-statica", function (req, res) {
+    client.query("SELECT * FROM masini", function (err, rez) {
+        res.render("pagini/galerie-statica", { produse: rez.rows, imagini: obGlobal.obImagini.imagini });
+    });
+});
+
+//  ---------------------- Oferte
+
 
 // 19.
 app.get("/*.ejs", function (req, res) {
@@ -229,60 +424,6 @@ function afisareEroare(res, _identificator, _titlu, _text, _imagine) {
     }
 }
 
-// find = gaseste primul elem pentru care funtia returneaza true
-
-
-// ------------------------- GALERIE ANIMATA -------------------------
-// app.get("/galerie-animata", function (req, res) {
-//     if (obGlobal.obImagini && obGlobal.obImagini.imagini) {
-//         let nrImagini = getRandomFromSet();
-
-//         let fisScss = path.join(__dirname, "resurse/scss/galerie-animata.scss");
-//         let liniiFisScss = fs.readFileSync(fisScss).toString().split('\n');
-
-//         let stringImg = "$nrImg: " + nrImagini + ";";
-//         liniiFisScss.shift();
-//         liniiFisScss.unshift(stringImg);
-//         fs.writeFileSync(fisScss, liniiFisScss.join('\n'));
-
-//         res.render("pagini/galerie-animata", {
-//             imagini: obGlobal.obImagini.imagini,
-//             nrImagini: nrImagini
-//         });
-//     } else {
-//         res.render("pagini/galerie-animata", {
-//             imagini: [],
-//             nrImagini: 0
-//         });
-//     }
-// });
-
-// app.get("/galerie-animata", function (req, res) {
-//     if (obGlobal.obImagini && obGlobal.obImagini.imagini) {
-//         let nrImagini = getRandomFromSet();
-
-//         let fisScss = path.join(__dirname, "resurse/scss/galerie-animata.scss");
-//         let liniiFisScss = fs.readFileSync(fisScss).toString().split('\n');
-
-//         let stringImg = "$nrImg: " + nrImagini + ";";
-//         liniiFisScss.shift();
-//         liniiFisScss.unshift(stringImg);
-//         fs.writeFileSync(fisScss, liniiFisScss.join('\n'));
-
-//         console.log("Imagini trimise la șablon:", obGlobal.obImagini.imagini);
-
-//         res.render("pagini/galerie-animata", {
-//             imagini: obGlobal.obImagini.imagini,
-//             nrImagini: nrImagini
-//         });
-//     } else {
-//         res.render("pagini/galerie-animata", {
-//             imagini: [],
-//             nrImagini: 0
-//         });
-//     }
-// });
-
 // ---------------------- GALERIE STATICA
 function initImagini() {
     var continut = fs.readFileSync(__dirname + "/resurse/json/galerie.json").toString("utf-8");
@@ -317,39 +458,6 @@ function initImagini() {
 initImagini();
 
 
-// function initImagini() {
-//     try {
-//         var continut = fs.readFileSync(path.join(__dirname, "resurse/json/galerie.json")).toString("utf-8");
-//         obGlobal.obImagini = JSON.parse(continut);
-//         let vImagini = obGlobal.obImagini.imagini;
-
-//         let caleAbs = path.join(__dirname, obGlobal.obImagini.cale_galerie);
-//         let caleAbsMediu = path.join(__dirname, obGlobal.obImagini.cale_galerie, "mediu");
-
-//         if (!fs.existsSync(caleAbsMediu)) fs.mkdirSync(caleAbsMediu);
-
-//         for (let imag of vImagini) {
-//             let [numeFis, ext] = imag.cale_imagine.split(".");
-//             let caleFisAbs = path.join(caleAbs, imag.cale_imagine);
-//             let caleFisMediuAbs = path.join(caleAbsMediu, numeFis + ".webp");
-
-//             console.log("Procesare imagine:", caleFisAbs);
-
-//             sharp(caleFisAbs).resize(400).toFile(caleFisMediuAbs)
-//                 .then(() => {
-//                     imag.fisier_mediu = path.join("/", obGlobal.obImagini.cale_galerie, "mediu", numeFis + ".webp");
-//                     imag.cale_imagine = path.join("/", obGlobal.obImagini.cale_galerie, imag.cale_imagine);
-//                     console.log("Imagine procesată:", imag.fisier_mediu);
-//                 })
-//                 .catch(err => {
-//                     console.error("Eroare la redimensionarea imaginii:", err);
-//                 });
-//         }
-//     } catch (err) {
-//         console.error("Eroare la inițializarea imaginilor:", err);
-//     }
-// }
-// initImagini();
 
 app.get("/galerie-animata", function (req, res) {
     let nrImagini = getRandomFromSet(); // Selectează un număr de imagini din mulțimea {2, 4, 8, 16}
@@ -364,15 +472,6 @@ app.get("/galerie-animata", function (req, res) {
 
     res.render("pagini/galerie-animata", { imagini: obGlobal.obImagini.imagini, nrImagini: nrImagini });
 });
-
-// app.get('/galerie-statica', function (req, res) {
-//     initImagini();
-//     if (obGlobal.obImagini && obGlobal.obImagini.imagini) {
-//         res.render('pagini/galerie-statica', { imagini: obGlobal.obImagini.imagini });
-//     } else {
-//         res.render('pagini/galerie-statica', { imagini: [] });
-//     }
-// });
 
 // Et 5
 function compileazaScss(caleScss, caleCss) {
@@ -423,6 +522,48 @@ fs.watch(obGlobal.folderScss, function (eveniment, numeFis) {
         }
     }
 })
+
+// ---------- Stergerea fisierelor vechi din backup
+
+function stergeFisiereVechi(folder, interval) {
+    fs.readdir(folder, (err, files) => {
+        if (err) {
+            console.log("Eroare la citirea folderului:", err);
+            return;
+        }
+
+        files.forEach(file => {
+            let caleFisier = path.join(folder, file);
+            fs.stat(caleFisier, (err, stats) => {
+                if (err) {
+                    console.log("Eroare la citirea informațiilor despre fișier:", err);
+                    return;
+                }
+
+                let now = Date.now();
+                let endTime = new Date(stats.mtime).getTime() + interval * 60000;
+
+                if (now > endTime) {
+                    fs.unlink(caleFisier, (err) => {
+                        if (err) {
+                            console.log("Eroare la ștergerea fișierului:", err);
+                        } else {
+                            console.log(`Fișierul ${file} a fost șters.`);
+                        }
+                    });
+                }
+            });
+        });
+    });
+}
+
+const intervalT = 10;
+
+setInterval(() => {
+    stergeFisiereVechi(obGlobal.folderBackup, intervalT);
+}, intervalT * 60000);
+
+
 
 app.listen(8080);
 console.log("--------- Server started ---------");

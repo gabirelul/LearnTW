@@ -127,12 +127,13 @@ Cerinte individuale:
 
 - Efecte CSS 
 - duotone [y]
-- reflexie []
+- reflexie [TODO]
 - text pe coloane [y] > #section-2
 - selection [y] > variables ::selection 
-- background fix la scroll [TODO]
+- bg fix la scroll [y]
 - tabel responsive [y] > #section-2 > .responsive
 - stilizare hr [y]
+- video ca bg [y]
 
 - galerie-animata [TODO]
 - efect-css-reflexie-text [TODO]
@@ -155,42 +156,3 @@ Cerinte individuale:
 
  - bootstrap_js
  
-
- TODO
---------------------------------------
- body class="pagina-cu-background-fix"
- .pagina-cu-background-fix {
-    background-repeat: no-repeat;
-    background-attachment: fixed; 
-    animation: schimbare-background 14s linear infinite; 
-  }
-  
-  @keyframes schimbare-background {
-    0%, 100% { background-image: url("/resurse/imagini/fundal-pagina.jpg"); }
-    50% { background-image: url("/resurse/imagini/fundal-pagina2.jpg"); }
-  }
---------------------------------------
-#video-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    min-width: 100%;
-    min-height: 100%;
-    z-index: -1; 
-  }
-  
-  .content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    text-align: center;
-  }
-
-  <body>
-    <video autoplay muted loop id="video-bg">
-        <source src="/resurse/video/background.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
---------------------------------------

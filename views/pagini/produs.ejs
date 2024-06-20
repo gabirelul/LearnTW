@@ -9,50 +9,71 @@
         content="Vanzari/inchirieri auto (Audi, Mercedes, BMW). Consultanta. Schimb cu masina veche. Livram si la domiciliu in Bucuresti.">
     <meta name="author" content="Alex Chera">
     <title>Produs</title>
-        <link href="/resurse/css/produs.css" type="text/css" rel="stylesheet" />
+    <link href="/resurse/css/produs.css" type="text/css" rel="stylesheet" />
 </head>
 
 <body>
     <%- include("../fragmente/header") %>
 
-        <main>
-            <section>
-                <article id="art-produs">
-                    <h3><span class="nume"><%- locals.prod.nume %></span></h3>
-                    <p>Pret: <span class="pret"><%- locals.prod.pret %> </span></p>
-                    <p>Descriere: <span class="descriere"><%- locals.prod.descriere %> </span></p>
-                    <p>Dotari: <span class="dotari"><%- locals.prod.dotari %> </span></p>
-                    <p>cc: <span class="cc"><%- locals.prod.cc %> </span></p>
-                    <p>Categorie: <span class="categorie"><%- locals.prod.categorie %> </span></p>
-                    <p>Volan dreapta: <span class="volan_dreapta"><%- locals.prod.volan_dreapta %> </span></p>
-                    <p>Data adăugare: <span class="data_adaugare"><%- locals.prod.data_adaugare %> </span></p>
+    <main class="container my-4">
+        <section>
+            <article id="art-produs" class="card mb-4">
+                <div class="card-body">
+                    <h3 class="card-title"><span class="nume"><%- locals.prod.nume %></span></h3>
+                    <p class="card-text">Pret: <span class="pret"><%- locals.prod.pret %> </span></p>
+                    <p class="card-text">Descriere: <span class="descriere"><%- locals.prod.descriere %> </span></p>
+                    <p class="card-text">Dotari: <span class="dotari"><%- locals.prod.dotari %> </span></p>
+                    <p class="card-text">cc: <span class="cc"><%- locals.prod.cc %> </span></p>
+                    <p class="card-text">Categorie: <span class="categorie"><%- locals.prod.categorie %> </span></p>
+                    <p class="card-text">Volan dreapta: <span class="volan_dreapta"><%- locals.prod.volan_dreapta %> </span></p>
+                    <p class="card-text">Data adăugare: <span class="data_adaugare"><%- locals.prod.data_adaugare %> </span></p>
                     <figure class="imag-produs">
-                        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                        <div id="carouselExample" class="carousel slide w-100" data-bs-ride="carousel">
                             <!-- Carousel Inner with Dynamic Images -->
                             <div class="carousel-inner">
-                                <% for(let i = 1; i <= 3; i++) { %>
+                                <% for(let i=1; i <=3; i++) { %>
                                     <div class="carousel-item <%= i === 1 ? 'active' : '' %>">
-                                        <img src="/resurse/imagini/produse/<%- locals.prod.imagine %>/img-<%= i %>.jpg" class="d-block w-100" alt="Imagine <%= i %>">
+                                        <img src="/resurse/imagini/produse/<%- locals.prod.imagine %>/img-<%= i %>.jpg"
+                                            class="d-block w-100" alt="Imagine <%= i %>">
                                     </div>
                                 <% } %>
                             </div>
                             <!-- Controls for navigating through the carousel -->
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                                data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Previous</span>
                             </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                                data-bs-slide="next">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Next</span>
                             </button>
                         </div>
                     </figure>
-                </article>
+                </div>
+            </article>
+        </section>
+        
+        <section>
+            <h3>Produse similare</h3>
+            <div class="row">
+                <% for(let prod_similar of produse_similare) { %>
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <img src="/resurse/imagini/produse/<%- prod_similar.imagine %>/img-1.jpg" class="card-img-top" alt="Imagine produs similar">
+                            <div class="card-body">
+                                <h5 class="card-title"><a href="/produs/<%= prod_similar.id %>"><%- prod_similar.nume %></a></h5>
+                                <p class="card-text">Pret: <%- prod_similar.pret %></p>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </section>
+    </main>
 
-            </section>
-        </main>
-
-        <%- include("../fragmente/footer") %>
+    <%- include("../fragmente/footer") %>
 </body>
 
 </html>

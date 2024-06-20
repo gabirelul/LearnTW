@@ -6,24 +6,26 @@
   <%- include("../fragmente/head.ejs") %>
 </head>
 
-<body>
+<body class="bg-fix">
   <%- include("../fragmente/header.ejs") %>
-  <main>
-    <h2 style="text-align: center;"><i>Galerie</i></h2>
-    <section id="container-galerie-animata">
+    <main>
+      <h2 style="text-align: center;"><i>Galerie</i></h2>
+      <section id="container-galerie-animata">
         <div class="galerie_animata" id="galanim">
-                <% for (let imag of locals.imagini) { %>
-                    <figure>
-                        <picture>
-                          <source srcset="<%= imag.fisier_mediu %>" media="(max-width: 1200px)" />
-                          <img src="<%= imag.cale_imagine%>" alt="a">
-                        </picture>
-                    <figcaption><%= imag.descriere %></figcaption>
-                  </figure>
-                <% } %>
+          <% for (let imag of locals.imagini) { %>
+            <figure>
+              <picture>
+                <source srcset="<%= imag.fisier_mediu %>" media="(max-width: 1200px)" />
+                <img src="<%= imag.cale_imagine%>" alt="a">
+              </picture>
+              <figcaption>
+                <%= imag.descriere %>
+              </figcaption>
+            </figure>
+            <% } %>
         </div>
-    </section>
-</main>
+      </section>
+    </main>
 
     <%- include("../fragmente/footer.ejs") %>
 </body>

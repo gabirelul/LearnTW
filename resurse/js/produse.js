@@ -51,6 +51,11 @@ window.addEventListener("load", function () {
                 produs.style.display = "none";
             }
         }
+        let numarProduseVizibileElement = document.getElementById('numar-produse-vizibile');
+        if (numarProduseVizibileElement) {
+            numarProduseVizibileElement.textContent = numarProduseVizibile;
+        }
+
         const mesajFiltrare = document.getElementById("mesaj-filtrare");
         mesajFiltrare.style.display = (numarProduseVizibile === 0) ? "block" : "none";
     }
@@ -263,8 +268,13 @@ document.querySelectorAll('.delete-button').forEach(function (button) {
     });
 });
 
-// Afisează numărul total de produse vizibile
-let numarProduseVizibileElement = document.getElementById('numar-produse-vizibile');
-if (numarProduseVizibileElement) {
-    numarProduseVizibileElement.textContent = numarProduseVizibile;
+
+function normalizeString(str) {
+    const diacriticsMap = {
+        'ă': 'a', 'â': 'a', 'î': 'i', 'ș': 's', 'ț': 't',
+        'Ă': 'A', 'Â': 'A', 'Î': 'I', 'Ș': 'S', 'Ț': 'T'
+    };
+    return str.replace(/[ăâîșțĂÂÎȘȚ]/g, match => diacriticsMap[match]);
 }
+
+const inpNume = normalizeString(document.getElementById("inp-nume").value.toLowerCase().trim());

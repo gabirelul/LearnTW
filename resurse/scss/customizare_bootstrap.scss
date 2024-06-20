@@ -10,13 +10,72 @@ $light-color4: #999191;
 
 $border-radius: 8px;
 
-@use '../../node_modules/bootstrap/scss/bootstrap.scss' with (
-    $primary: $primary,
+$gray-300: #dee2e6; // culoarea track-ului
+$box-shadow-inset: inset 0 1px 2px rgba(0, 0, 0, 0.1); // box-shadow pentru track
+$black: #000;
+
+$form-range-track-width: 100%;
+$form-range-track-height: .5rem;
+$form-range-track-cursor: pointer;
+$form-range-track-bg: $gray-300;
+$form-range-track-border-radius: 1rem;
+$form-range-track-box-shadow: $box-shadow-inset;
+
+$form-range-thumb-width: 1.5rem;
+$form-range-thumb-height: $form-range-thumb-width;
+$form-range-thumb-bg: #ffbf00; // culoarea bulinei
+$form-range-thumb-border: 0;
+$form-range-thumb-border-radius: 1rem;
+$form-range-thumb-box-shadow: 0 .1rem .25rem rgba($black, .1); // Utilizarea variabilei $black
+$form-range-thumb-focus-box-shadow: 0 0 0 1px #fff, 0 0 0 .25rem rgba(0, 123, 255, .25); // Exemplu pentru focus box-shadow
+$form-range-thumb-transition: background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+$form-range-track-bg: #28a745; // culoarea sliderului
+
+@use '../../node_modules/bootstrap/scss/bootstrap.scss' with ($primary: $primary,
     $secondary: $secondary,
     $body-bg: $light-color,
-    $body-color: $dark-color,
-    $border-radius: $border-radius
+    $body-color: $dark-color
 );
+
+input[type="range"] {
+    width: $form-range-track-width;
+    height: $form-range-track-height;
+    cursor: $form-range-track-cursor;
+    background: $form-range-track-bg;
+    border-radius: $form-range-track-border-radius;
+    box-shadow: $form-range-track-box-shadow;
+    appearance: none;
+
+    &::-webkit-slider-thumb {
+        width: $form-range-thumb-width;
+        height: $form-range-thumb-height;
+        background: $form-range-thumb-bg;
+        border: $form-range-thumb-border;
+        border-radius: $form-range-thumb-border-radius;
+        box-shadow: $form-range-thumb-box-shadow;
+        appearance: none;
+        transition: $form-range-thumb-transition;
+
+        &:focus {
+            box-shadow: $form-range-thumb-focus-box-shadow;
+        }
+    }
+
+    &::-moz-range-thumb {
+        width: $form-range-thumb-width;
+        height: $form-range-thumb-height;
+        background: $form-range-thumb-bg;
+        border: $form-range-thumb-border;
+        border-radius: $form-range-thumb-border-radius;
+        box-shadow: $form-range-thumb-box-shadow;
+        transition: $form-range-thumb-transition;
+
+        &:focus {
+            box-shadow: $form-range-thumb-focus-box-shadow;
+        }
+    }
+}
 
 .dark-mode {
     background-color: $dark-color;

@@ -41,6 +41,7 @@
 
             <label> Pret minim: <input type="range" id="inp-pret" value="0" min="0" max="90000"
                     onchange="filtrareProduse()"> <span id="infoRange">(0)</span></label>
+
             <label>Select simplu:
                 <select id="inp-categorie">
                     <option id="sel-toate" selected value="toate">toate</option>
@@ -56,8 +57,9 @@
                 <div class="invalid-feedback">Această descriere nu corespunde niciunui produs. Vă rugăm să introduceți o
                     descriere validă.</div>
             </div>
+            <p>Număr total de produse vizibile: <span id="numar-produse-vizibile"></span></p>
             <p>
-                <p>Număr total de produse vizibile: <span id="numar-produse-vizibile"></span></p>
+                
                 <div class="d-flex justify-content-between">
                     <button id="sortCrescNume" class="btn btn-primary">
                         <span class="d-none d-md-inline">Sorteaza crescator dupa pret si nume</span>
