@@ -118,7 +118,7 @@ app.get(["/", "/home", "/index"], function (req, res) {
     res.render("pagini/index", { ip: req.ip, imagini: obGlobal.obImagini.imagini, oferta: ofertaCurenta });
 });
 
-const T = 1; //minute
+const T = 100; //minute
 
 function ofertaNoua() {
     const categoriesQuery = "select * from unnest(enum_range(null::categ_masini))";
@@ -427,7 +427,7 @@ function stergeFisiereVechi(folder, interval) {
             let caleFisier = path.join(folder, file);
             fs.stat(caleFisier, (err, stats) => {
                 if (err) {
-                    console.log("Eroare la citirea informațiilor despre fișier:", err);
+                    console.log("Eroare", err);
                     return;
                 }
 
@@ -437,7 +437,7 @@ function stergeFisiereVechi(folder, interval) {
                 if (now > endTime) {
                     fs.unlink(caleFisier, (err) => {
                         if (err) {
-                            console.log("Eroare la ștergerea fișierului:", err);
+                            console.log("Eroare la stergere:", err);
                         } else {
                             console.log(`Fișierul ${file} a fost șters.`);
                         }

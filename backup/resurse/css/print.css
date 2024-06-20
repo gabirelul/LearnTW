@@ -6,13 +6,28 @@ body {
 main #layout-responsive {
   grid-gap: 0.5em;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-areas: "section-1 section-1" "section-5 section-5" "section-6 section-6" "section-7 section-7" "section-3 section-3" "section-2 section-2" "section-4 section-4" "section-8 section-8";
+  grid-template-areas:
+    "section-1 section-1"
+    "section-5 section-5"
+    "section-6 section-6"
+    "section-7 section-7"
+    "section-3 section-3"
+    "section-2 section-2"
+    "section-4 section-4"
+    "section-8 section-8";
 }
+
+#section-1 {
+  grid-area: section-1;
+  margin: 0;
+  padding: 0;
+}
+
 main img,
 main video,
 main iframe,
 main picture {
-  display: none;
+  display: none !important;
 }
 
 #link-top {
@@ -24,4 +39,79 @@ footer p.banner {
   position: fixed;
   top: 0;
   right: 0;
+  width: 50%;
+}
+
+@media print {
+
+  /* Stilizare link-uri */
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* Watermark pe fiecare pagină */
+  @page {
+    @bottom-left {
+      content: "Chera";
+      opacity: 0.3;
+      color: black;
+      position: fixed;
+      width: 60%;
+      height: 10%;
+      text-align: center;
+    }
+  }
+
+  /* Banner pe prima pagină */
+  .alert.alert-warning {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 3px double black;
+    width: 50%;
+  }
+
+  /* Headingul de nivel 1 centrat pe prima pagină */
+  h1 {
+    text-align: center;
+    page-break-after: avoid;
+  }
+
+  /* Meniu sub formă de listă neordonată */
+  .menu {
+    display: block !important;
+    page-break-before: always;
+  }
+
+  .menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .menu ul li {
+    margin-bottom: 5px;
+  }
+
+  .menu ul ul {
+    margin-top: 5px;
+    margin-left: 20px;
+  }
+
+  /* Page break înaintea footer-ului */
+  footer {
+    page-break-before: always;
+  }
+
+  /* Margini pentru pagini stânga și dreapta */
+  @page :left {
+    margin-left: 2cm;
+    margin-right: 1cm;
+  }
+
+  @page :right {
+    margin-left: 1cm;
+    margin-right: 2cm;
+  }
 }

@@ -1,6 +1,69 @@
 {
   "oferte": [
     {
+      "categorie": "Audi",
+      "data-incepere": "2024-06-20 17:09:54",
+      "data-finalizare": "2024-06-20 17:10:54",
+      "reducere": 25,
+      "imagine": "Audi A4"
+    },
+    {
+      "categorie": "Mercedes-Benz",
+      "data-incepere": "2024-06-20 17:08:51",
+      "data-finalizare": "2024-06-20 17:09:51",
+      "reducere": 10,
+      "imagine": "Mercedes-Benz C-Class"
+    },
+    {
+      "categorie": "Audi",
+      "data-incepere": "2024-06-20 17:07:49",
+      "data-finalizare": "2024-06-20 17:08:49",
+      "reducere": 25,
+      "imagine": "Audi A4"
+    },
+    {
+      "categorie": "Mercedes-Benz",
+      "data-incepere": "2024-06-20 17:06:47",
+      "data-finalizare": "2024-06-20 17:07:47",
+      "reducere": 5,
+      "imagine": "Mercedes-Benz C-Class"
+    },
+    {
+      "categorie": "BMW",
+      "data-incepere": "2024-06-20 17:04:44",
+      "data-finalizare": "2024-06-20 17:05:44",
+      "reducere": 15,
+      "imagine": "BMW 3 Series"
+    },
+    {
+      "categorie": "Mercedes-Benz",
+      "data-incepere": "2024-06-20 17:02:42",
+      "data-finalizare": "2024-06-20 17:03:42",
+      "reducere": 25,
+      "imagine": "Mercedes-Benz C-Class"
+    },
+    {
+      "categorie": "BMW",
+      "data-incepere": "2024-06-20 16:58:40",
+      "data-finalizare": "2024-06-20 16:59:40",
+      "reducere": 40,
+      "imagine": "BMW 3 Series"
+    },
+    {
+      "categorie": "Mercedes-Benz",
+      "data-incepere": "2024-06-20 16:57:38",
+      "data-finalizare": "2024-06-20 16:58:38",
+      "reducere": 50,
+      "imagine": "Mercedes-Benz C-Class"
+    },
+    {
+      "categorie": "Audi",
+      "data-incepere": "2024-06-20 16:55:36",
+      "data-finalizare": "2024-06-20 16:56:36",
+      "reducere": 35,
+      "imagine": "Audi A4"
+    },
+    {
       "categorie": "Mercedes-Benz",
       "data-incepere": "2024-06-20 15:03:23",
       "data-finalizare": "2024-06-20 15:04:23",
