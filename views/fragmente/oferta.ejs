@@ -1,0 +1,15 @@
+<% if (oferta) { %>
+    <div class="oferta card p-3 mb-5 bg-white rounded">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4">Oferta Minutului</h2>
+            <p class="card-text"><strong>Categorie:</strong> <%= oferta.categorie %></p>
+            <p class="card-text"><strong>Discount:</strong> <%= oferta.reducere %>%</p>
+            <p class="card-text"><strong>Valabilă începând cu:</strong> <%= oferta["data-incepere"] %> <strong>până la:</strong> <%= oferta["data-finalizare"] %></p>
+            <img src="<%= oferta.imagine %>" class="img-fluid" alt="Imagine masina">
+        </div>
+    </div>
+<% } else { %>
+    <div class="alert alert-warning" role="alert">
+        Nicio oferta valabila
+    </div>
+<% } %>

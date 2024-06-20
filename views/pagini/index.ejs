@@ -18,17 +18,22 @@
 
   <main>
     <div id="layout-responsive">
+      
       <section id="section-1">
         <% if (oferta) { %>
-            <div class="oferta">
-                <h2>Current Offer</h2>
-                <p>Category: <%= oferta.categorie %></p>
-                <p>Discount: <%= oferta.reducere %>%</p>
-                <p>Valid From: <%= oferta["data-incepere"] %> To: <%= oferta["data-finalizare"] %></p>
-                <img src="<%= oferta.imagine %>" alt="Car Image" style="width: 300px; height: auto;">
+            <div class="oferta card p-3 mb-5">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Oferta Minutului</h2>
+                    <p class="card-text"><strong>Categorie:</strong> <%= oferta.categorie %></p>
+                    <p class="card-text"><strong>Reducere:</strong> <%= oferta.reducere %>%</p>
+                    <p class="card-text"><strong>Valabilă începând cu:</strong> <%= oferta["data-incepere"] %> <strong>până la:</strong> <%= oferta["data-finalizare"] %></p>
+                    <img src="<%= oferta.imagine %>" class="img-fluid" alt="Imagine masina">
+                </div>
             </div>
         <% } else { %>
-            <p>Nicio oferta valabila</p>
+            <div class="alert alert-warning" role="alert">
+                Nicio oferta valabila
+            </div>
         <% } %>
     </section>
     

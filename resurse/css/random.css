@@ -243,3 +243,7 @@ td {
   color: white;
   text-align: center;
 }
+
+.final-countdown {
+  color: red; /* exemplu de schimbare de culoare în ultimele 10 secunde */
+}

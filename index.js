@@ -112,92 +112,30 @@ app.get("/produs/:id", function (req, res) {
 });
 
 // -------------------------------
-
-// app.get(["/", "/home", "/index"], function (req, res) {
-//     let oferte = JSON.parse(fs.readFileSync(path.join(__dirname, "resurse/json/oferte.json")));
-//     let ofertaCurenta = oferte.oferte[0]; // Assuming the first element is the latest offer
-//     res.render("pagini/index", { ip: req.ip, imagini: obGlobal.obImagini.imagini, oferta: ofertaCurenta });
-// });
-
 app.get(["/", "/home", "/index"], function (req, res) {
     let oferte = JSON.parse(fs.readFileSync(path.join(__dirname, "resurse/json/oferte.json")));
     let ofertaCurenta = oferte.oferte[0];
     res.render("pagini/index", { ip: req.ip, imagini: obGlobal.obImagini.imagini, oferta: ofertaCurenta });
 });
 
-const T = 0.5; //minute
+const T = 1; //minute
 
-// function generateNewOffer() {
-//     const categoriesQuery = "select * from unnest(enum_range(null::categ_masini))";
-//     client.query(categoriesQuery, (err, result) => {
-//         if (err) {
-//             console.error("Error fetching categories", err);
-//             return;
-//         }
-
-//         let categories = result.rows.map(row => row.unnest);
-//         let currentOffers = JSON.parse(fs.readFileSync(path.join(__dirname, "resurse/json/oferte.json"))).oferte;
-
-//         let lastCategory = currentOffers.length > 0 ? currentOffers[0].categorie : null;
-//         let availableCategories = categories.filter(cat => cat !== lastCategory);
-
-//         if (availableCategories.length === 0) {
-//             console.error("No available categories to choose from.");
-//             return;
-//         }
-
-//         let newCategory = availableCategories[Math.floor(Math.random() * availableCategories.length)];
-//         let newDiscount = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50][Math.floor(Math.random() * 10)];
-//         let now = moment();
-
-//         // Fetch the image URL for the selected category
-//         client.query("SELECT * FROM masini WHERE categorie = $1 LIMIT 1", [newCategory], (err, res) => {
-//             if (err) {
-//                 console.error("Error fetching car details", err);
-//                 return;
-//             }
-
-//             if (res.rows.length === 0) {
-//                 console.error("No car found for the selected category.");
-//                 return;
-//             }
-
-//             let car = res.rows[0];
-
-//             let newOffer = {
-//                 categorie: newCategory,
-//                 "data-incepere": now.format("YYYY-MM-DD HH:mm:ss"),
-//                 "data-finalizare": now.add(T, 'minutes').format("YYYY-MM-DD HH:mm:ss"),
-//                 reducere: newDiscount,
-//                 image_url: car.image_url // Ensure this column exists in your database
-//             };
-
-//             currentOffers.unshift(newOffer);
-
-//             fs.writeFileSync(path.join(__dirname, "resurse/json/oferte.json"), JSON.stringify({ oferte: currentOffers }, null, 2));
-
-//             console.log("New offer generated:", newOffer);
-//         });
-//     });
-// }
-
-function generateNewOffer() {
+function ofertaNoua() {
     const categoriesQuery = "select * from unnest(enum_range(null::categ_masini))";
     client.query(categoriesQuery, (err, result) => {
         if (err) {
-            console.error("Error fetching categories", err);
+            console.error("Eroare la categorii!", err);
             return;
         }
 
         let categories = result.rows.map(row => row.unnest);
         let currentOffers = JSON.parse(fs.readFileSync(path.join(__dirname, "resurse/json/oferte.json"))).oferte;
 
-        // Get the last generated category from the offers list
         let lastCategory = currentOffers.length > 0 ? currentOffers[0].categorie : null;
         let availableCategories = categories.filter(cat => cat !== lastCategory);
 
         if (availableCategories.length === 0) {
-            console.error("No available categories to choose from.");
+            console.error("Nu exista categorii din care sa alegi.");
             return;
         }
 
@@ -208,12 +146,12 @@ function generateNewOffer() {
         // Fetch the image URL for the selected category
         client.query("SELECT * FROM masini WHERE categorie = $1 LIMIT 1", [newCategory], (err, res) => {
             if (err) {
-                console.error("Error fetching car details", err);
+                console.error("Eroare la detalii", err);
                 return;
             }
 
             if (res.rows.length === 0) {
-                console.error("No car found for the selected category.");
+                console.error("Nicio masina gasita in categorie.");
                 return;
             }
 
@@ -224,19 +162,19 @@ function generateNewOffer() {
                 "data-incepere": now.format("YYYY-MM-DD HH:mm:ss"),
                 "data-finalizare": now.add(T, 'minutes').format("YYYY-MM-DD HH:mm:ss"),
                 reducere: newDiscount,
-                image_url: car.image_url // Ensure this column exists in your database
+                imagine: car.imagine
             };
 
             currentOffers.unshift(newOffer);
 
             fs.writeFileSync(path.join(__dirname, "resurse/json/oferte.json"), JSON.stringify({ oferte: currentOffers }, null, 2));
 
-            console.log("New offer generated:", newOffer);
+            console.log("Oferta noua generata:", newOffer);
         });
     });
 }
 
-setInterval(generateNewOffer, T * 60 * 1000);
+setInterval(ofertaNoua, T * 60 * 1000);
 
 
 // -------------------------------------------------------------------
