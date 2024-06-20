@@ -127,6 +127,60 @@ app.get(["/", "/home", "/index"], function (req, res) {
 
 const T = 0.5; //minute
 
+// function generateNewOffer() {
+//     const categoriesQuery = "select * from unnest(enum_range(null::categ_masini))";
+//     client.query(categoriesQuery, (err, result) => {
+//         if (err) {
+//             console.error("Error fetching categories", err);
+//             return;
+//         }
+
+//         let categories = result.rows.map(row => row.unnest);
+//         let currentOffers = JSON.parse(fs.readFileSync(path.join(__dirname, "resurse/json/oferte.json"))).oferte;
+
+//         let lastCategory = currentOffers.length > 0 ? currentOffers[0].categorie : null;
+//         let availableCategories = categories.filter(cat => cat !== lastCategory);
+
+//         if (availableCategories.length === 0) {
+//             console.error("No available categories to choose from.");
+//             return;
+//         }
+
+//         let newCategory = availableCategories[Math.floor(Math.random() * availableCategories.length)];
+//         let newDiscount = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50][Math.floor(Math.random() * 10)];
+//         let now = moment();
+
+//         // Fetch the image URL for the selected category
+//         client.query("SELECT * FROM masini WHERE categorie = $1 LIMIT 1", [newCategory], (err, res) => {
+//             if (err) {
+//                 console.error("Error fetching car details", err);
+//                 return;
+//             }
+
+//             if (res.rows.length === 0) {
+//                 console.error("No car found for the selected category.");
+//                 return;
+//             }
+
+//             let car = res.rows[0];
+
+//             let newOffer = {
+//                 categorie: newCategory,
+//                 "data-incepere": now.format("YYYY-MM-DD HH:mm:ss"),
+//                 "data-finalizare": now.add(T, 'minutes').format("YYYY-MM-DD HH:mm:ss"),
+//                 reducere: newDiscount,
+//                 image_url: car.image_url // Ensure this column exists in your database
+//             };
+
+//             currentOffers.unshift(newOffer);
+
+//             fs.writeFileSync(path.join(__dirname, "resurse/json/oferte.json"), JSON.stringify({ oferte: currentOffers }, null, 2));
+
+//             console.log("New offer generated:", newOffer);
+//         });
+//     });
+// }
+
 function generateNewOffer() {
     const categoriesQuery = "select * from unnest(enum_range(null::categ_masini))";
     client.query(categoriesQuery, (err, result) => {
@@ -138,6 +192,7 @@ function generateNewOffer() {
         let categories = result.rows.map(row => row.unnest);
         let currentOffers = JSON.parse(fs.readFileSync(path.join(__dirname, "resurse/json/oferte.json"))).oferte;
 
+        // Get the last generated category from the offers list
         let lastCategory = currentOffers.length > 0 ? currentOffers[0].categorie : null;
         let availableCategories = categories.filter(cat => cat !== lastCategory);
 
@@ -181,109 +236,7 @@ function generateNewOffer() {
     });
 }
 
-// function generateNewOffer() {
-//     const categoriesQuery = "select * from unnest(enum_range(null::tipuri_masini))";
-//     client.query(categoriesQuery, (err, result) => {
-//         if (err) {
-//             console.error("Error fetching categories", err);
-//             return;
-//         }
-
-//         let categories = result.rows.map(row => row.unnest);
-//         let currentOffers = JSON.parse(fs.readFileSync(path.join(__dirname, "resurse/json/oferte.json"))).oferte;
-
-//         let lastCategory = currentOffers.length > 0 ? currentOffers[0].categorie : null;
-//         let availableCategories = categories.filter(cat => cat !== lastCategory);
-
-//         let newCategory = availableCategories[Math.floor(Math.random() * availableCategories.length)];
-//         let newDiscount = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50][Math.floor(Math.random() * 10)];
-//         let now = moment();
-
-//         // Fetch the image URL for the selected category
-//         client.query(`SELECT * FROM masini WHERE categorie = '${newCategory}' LIMIT 1`, (err, res) => {
-//             if (err) {
-//                 console.error("Error fetching car details", err);
-//                 return;
-//             }
-
-//             let car = res.rows[0];
-
-//             let newOffer = {
-//                 categorie: newCategory,
-//                 "data-incepere": now.format("YYYY-MM-DD HH:mm:ss"),
-//                 "data-finalizare": now.add(T, 'minutes').format("YYYY-MM-DD HH:mm:ss"),
-//                 reducere: newDiscount,
-//                 imagine: car.imagine 
-//             };
-
-//             currentOffers.unshift(newOffer);
-
-//             fs.writeFileSync(path.join(__dirname, "resurse/json/oferte.json"), JSON.stringify({ oferte: currentOffers }, null, 2));
-
-//             console.log("New offer generated:", newOffer);
-//         });
-//     });
-// }
-
-// function generateNewOffer() {
-//     const categoriesQuery = "select * from unnest(enum_range(null::categ_masini))";
-//     client.query(categoriesQuery, (err, result) => {
-//         if (err) {
-//             console.error("Error fetching categories", err);
-//             return;
-//         }
-
-//         let categories = result.rows.map(row => row.unnest);
-//         let currentOffers = JSON.parse(fs.readFileSync(path.join(__dirname, "resurse/json/oferte.json"))).oferte;
-
-//         let lastCategory = currentOffers.length > 0 ? currentOffers[0].categorie : null;
-//         let availableCategories = categories.filter(cat => cat !== lastCategory);
-
-//         if (availableCategories.length === 0) {
-//             console.error("No available categories to choose from.");
-//             return;
-//         }
-
-//         let newCategory = availableCategories[Math.floor(Math.random() * availableCategories.length)];
-//         let newDiscount = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50][Math.floor(Math.random() * 10)];
-//         let now = moment();
-
-//         // Fetch the image URL for the selected category
-//         client.query("SELECT * FROM masini WHERE categorie = $1 LIMIT 1", [newCategory], (err, res) => {
-//             if (err) {
-//                 console.error("Error fetching car details", err);
-//                 return;
-//             }
-
-//             if (res.rows.length === 0) {
-//                 console.error("No car found for the selected category.");
-//                 return;
-//             }
-
-//             let car = res.rows[0];
-
-//             let newOffer = {
-//                 categorie: newCategory,
-//                 "data-incepere": now.format("YYYY-MM-DD HH:mm:ss"),
-//                 "data-finalizare": now.add(T, 'minutes').format("YYYY-MM-DD HH:mm:ss"),
-//                 reducere: newDiscount,
-//                 imagine: car.imagine // Ensure this column exists in your database
-//             };
-
-//             currentOffers.unshift(newOffer);
-
-//             fs.writeFileSync(path.join(__dirname, "resurse/json/oferte.json"), JSON.stringify({ oferte: currentOffers }, null, 2));
-
-//             console.log("New offer generated:", newOffer);
-//         });
-//     });
-// }
-
-
 setInterval(generateNewOffer, T * 60 * 1000);
-
-
-
 
 
 // -------------------------------------------------------------------
