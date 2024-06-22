@@ -178,4 +178,16 @@ Cerinte individuale:
 18
 19
 20
- 
+
+
+Etapa 7
+
+- (0.5p) Clasa AccesBD [y]
+- (0.05p)  Drepturi [y]
+- (0.25p) Clasa Roluri [y]
+- (0.6p)Clasa Utilizator [y]
+
+- (0.2p) JSdoc
+- (0.3p) Adăugați în funcțiile select, update 
+- (0.4p) Folositi un ORM precum Sequelize
+- (0.4p) Filtre persistente

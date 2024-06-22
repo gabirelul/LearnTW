@@ -278,3 +278,4 @@ function normalizeString(str) {
 }
 
 const inpNume = normalizeString(document.getElementById("inp-nume").value.toLowerCase().trim());
+

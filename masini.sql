@@ -57,3 +57,38 @@ values
     ('Mercedes-Benz GLC', 'Midsize SUV', 48000.00, 6000, 'Combustibil', 'Mercedes-Benz', ARRAY['Tapiterie piele', 'Sistem de asistenta la conducere'], FALSE, 'glc-1.jpg');
 
 select * from masini;
+
+
+CREATE TABLE utilizatori (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(100) NOT NULL,
+    nume VARCHAR(100) NOT NULL,
+    prenume VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    parola VARCHAR(255) NOT NULL,
+    rol_id INT NOT NULL,
+    culoare_chat VARCHAR(20) DEFAULT 'black',
+    poza TEXT,
+    blocat BOOLEAN DEFAULT false
+);
+
+
+CREATE TABLE roluri (
+    id SERIAL PRIMARY KEY,
+    nume VARCHAR(100) NOT NULL,
+    descriere TEXT
+);
+
+GRANT ALL PRIVILEGES ON DATABASE cti_2024 TO gabirelul;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO gabirelul;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO gabirelul;
+
+GRANT ALL PRIVILEGES ON TABLE utilizatori TO gabirelul;
+GRANT ALL PRIVILEGES ON TABLE roluri TO gabirelul;
+
+
+-- De la doamna
+CREATE USER nume_utilizator WITH ENCRYPTED PASSWORD 'parola';
+GRANT ALL PRIVILEGES ON DATABASE nume_baza_date TO nume_utilizator ;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO nume_utilizator;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO nume_utilizator;

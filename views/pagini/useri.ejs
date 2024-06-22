@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html  lang="ro">
+    <head>
+        <title>Utlizatori</title>
+        <%- include("../fragmente/head") %>
+    </head>
+    <body>
+    <%- include("../fragmente/header") %>
+
+    <main>
+    <div class="afisaj">
+        <h2>Useri</h2>
+
+		<table id="useri">
+		  <tr>
+			<th>&nbsp;Id&nbsp;&nbsp;</th><th>&nbsp;Username&nbsp;&nbsp;</th><th>&nbsp;Nume</th><th>&nbsp;Prenume&nbsp;&nbsp;</th><th>&nbsp;&nbsp;Blocat&nbsp;&nbsp;</th><th>&nbsp;&nbsp;Buton</th>
+		  </tr>
+
+		  <% for (var i = 0; i < useri.length; i++) { 
+				if(useri[i].rol=="comun"){ %>
+					<tr>
+						<td><%= useri[i].id %></td>
+						<td><%= useri[i].username %></td>
+						<td><%= useri[i].nume %></td>
+						<td><%= useri[i].prenume %></td>
+						<td><%=  useri[i].blocat %></td>
+						<td>
+							<form action="/blocare" method="POST">
+								<input type="hidden" name="id_utiliz" value="<%= useri[i].id %>">
+								<button type="submit" class="btn btn-primary">Blochează</button>
+							</form><br>
+							<form action="/deblocare" method="POST">
+								<input type="hidden" name="id_utiliz" value="<%= useri[i].id %>">
+								<button type="submit" class="btn btn-primary">Deblochează</button>
+							</form>
+						</td>
+
+					</tr> 
+				<% } %>			
+		  <% } %>
+		</table>
+		
+		<p>Sterge utilizator</p>
+		<form id="sterge" method="post" action="/sterge_utiliz">
+			<label>
+				Id: <input type="text" name="id_utiliz" value="">
+			</label>
+			
+			<input type="submit" value="Submit">
+		</form>
+	</div>
+</main>
+    <%- include("../fragmente/footer") %>
+</body>
+</html>
