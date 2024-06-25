@@ -1,16 +1,16 @@
-$primary: rgb(102, 76, 76);
-$secondary: rgb(251, 187, 251);
+$primary: #d52b1e;
+$secondary: #fed100;
 $dark-color: #1c1c1c;
 $light-color: #fff;
-$dark-color2: #040339;
-$light-color2: #dadada;
+$dark-color2: #242424;
+$light-color2: #e2c0c0;
 $dark-color3: #000002;
 $light-color3: #f3e4e4;
 $light-color4: #999191;
 
 $border-radius: 8px;
 
-$gray-300: #dee2e6; // culoarea track-ului
+$gray-300: #dee2e6;
 $box-shadow-inset: inset 0 1px 2px rgba(0, 0, 0, 0.1); // box-shadow pentru track
 $black: #000;
 
@@ -26,8 +26,8 @@ $form-range-thumb-height: $form-range-thumb-width;
 $form-range-thumb-bg: #ffbf00; // culoarea bulinei
 $form-range-thumb-border: 0;
 $form-range-thumb-border-radius: 1rem;
-$form-range-thumb-box-shadow: 0 .1rem .25rem rgba($black, .1); // Utilizarea variabilei $black
-$form-range-thumb-focus-box-shadow: 0 0 0 1px #fff, 0 0 0 .25rem rgba(0, 123, 255, .25); // Exemplu pentru focus box-shadow
+$form-range-thumb-box-shadow: 0 .1rem .25rem rgba($black, .1);
+$form-range-thumb-focus-box-shadow: 0 0 0 1px #fff, 0 0 0 .25rem rgba(0, 123, 255, .25);
 $form-range-thumb-transition: background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 
 $form-range-track-bg: #28a745; // culoarea sliderului
@@ -35,8 +35,7 @@ $form-range-track-bg: #28a745; // culoarea sliderului
 @use '../../node_modules/bootstrap/scss/bootstrap.scss' with ($primary: $primary,
     $secondary: $secondary,
     $body-bg: $light-color,
-    $body-color: $dark-color
-);
+    $body-color: $dark-color);
 
 input[type="range"] {
     width: $form-range-track-width;
@@ -97,6 +96,57 @@ input[type="range"] {
             border-color: darken($primary, 10%);
         }
     }
+
+    #layout-responsive>* {
+        background-color: $dark-color2;
+    }
+
+    #layout-responsive>* {
+        background-color: $dark-color2;
+        color: $light-color;
+    }
+
+    .card {
+        background-color: $dark-color2;
+        color: $light-color2;
+    }
+
+    .alert-warning {
+        background-color: $dark-color2;
+        color: $light-color2;
+        border-color: $dark-color3;
+    }
+
+    .efect-css-duotone,
+    .text-reflexie {
+        color: $light-color;
+    }
+
+    #video-vtt video {
+        background-color: $dark-color3;
+    }
+
+    #section-3-details details summary {
+        background-color: $dark-color2;
+        color: $light-color;
+    }
+
+    table#stilizare-tabel,
+    table.responsive {
+        background-color: $dark-color2;
+        color: $light-color;
+    }
+
+    #section-8 .section-8-left,
+    #section-8 .section-8-right {
+        background-color: $dark-color2;
+        color: $light-color;
+    }
+
+    #inp-nume,
+    .form-control {
+        background-color: $light-color4;
+    }
 }
 
 .light-mode {
@@ -119,4 +169,15 @@ input[type="range"] {
             border-color: lighten($secondary, 10%);
         }
     }
+}
+
+.form-custom {
+    background-color: #ccc;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+#form_inreg label input {
+    padding: .3rem;
+    margin-left: .3rem;
 }

@@ -30,12 +30,16 @@ window.addEventListener("load", function () {
         for (let produs of produse) {
             let valNume = produs.getElementsByClassName("val-nume")[0].innerHTML.toLowerCase().trim();
             let cond1 = valNume.startsWith(inpNume);
+
             let valCalorii = parseInt(produs.getElementsByClassName("val-cc")[0].innerHTML);
             let cond2 = (inpCalorii == "toate" || (minCalorii <= valCalorii && valCalorii < maxCalorii));
+
             let valPret = parseFloat(produs.getElementsByClassName("val-pret")[0].innerHTML);
             let cond3 = (valPret > inpPret);
+
             let valCategorie = produs.getElementsByClassName("val-categorie")[0].innerHTML.toLowerCase().trim();
             let cond4 = (inpCateg == valCategorie || inpCateg == "toate");
+            
             const prodDescriereElement = produs.getElementsByClassName("descriere")[0];
             const prodDescriere = prodDescriereElement ? prodDescriereElement.innerHTML.toLowerCase().trim() : "";
             const cond5 = (valDescriere === "" || prodDescriere.includes(valDescriere));
@@ -246,7 +250,49 @@ window.addEventListener("load", function () {
         }
     };
 
-});
+    // Funcția pentru ștergerea temporară a produsului
+    function deleteProductSession(button) {
+        var produs = button.closest('.produs');
+        var produsId = produs.getAttribute('data-id');
+
+        // Ascundem produsul
+        produs.style.display = 'none';
+
+        // Salvăm ID-ul produsului în sessionStorage
+        var hiddenProducts = JSON.parse(sessionStorage.getItem('hiddenProducts')) || [];
+        if (!hiddenProducts.includes(produsId)) {
+            hiddenProducts.push(produsId);
+            sessionStorage.setItem('hiddenProducts', JSON.stringify(hiddenProducts));
+        }
+
+        // Afisăm mesajul de filtrare dacă nu mai sunt produse vizibile
+        var mesajFiltrare = document.getElementById('mesaj-filtrare');
+        var produseVizibile = document.querySelectorAll('.produs:not([style*="display: none"])');
+        mesajFiltrare.style.display = produseVizibile.length === 0 ? 'block' : 'none';
+    }
+
+    // Funcția pentru a arăta produsele ascunse
+    function showHiddenProducts() {
+        var hiddenProducts = JSON.parse(sessionStorage.getItem('hiddenProducts')) || [];
+        var produse = document.getElementsByClassName("produs");
+        for (let produs of produse) {
+            var produsId = produs.getAttribute('data-id');
+            if (hiddenProducts.includes(produsId)) {
+                produs.style.display = 'none';
+            }
+        }
+    }
+
+    showHiddenProducts();
+
+    document.querySelectorAll('.sesiune-button').forEach(function (button) {
+        button.addEventListener('click', function (event) {
+            event.preventDefault();
+            deleteProductSession(this);
+        });
+    });
+
+}); //sfarsit window.addEventListener("load")
 
 
 // Funcția pentru ștergerea temporară a produsului

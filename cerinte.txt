@@ -82,7 +82,7 @@ Stil printare [individual]
 12. y 
 13. y 
 14. y 
-15. TODO / TOASK
+15. y
 16. y 
 17. y 
 18. y
@@ -127,7 +127,7 @@ Cerinte individuale:
 
 - Efecte CSS 
 - duotone [y]
-- reflexie [TODO]
+- reflexie [y]
 - text pe coloane [y] > #section-2
 - selection [y] > variables ::selection 
 - bg fix la scroll [y]
@@ -135,8 +135,8 @@ Cerinte individuale:
 - stilizare hr [y]
 - video ca bg [y]
 
-- galerie-animata [TODO]
-- efect-css-reflexie-text [TODO]
+- galerie-animata [y]
+- efect-css-reflexie-text [y]
 - efect-css-duotone [y]
 - efect-css-stilizare-hr [y]
 
@@ -152,28 +152,26 @@ Cerinte individuale:
 7. Cerințe specifice filtre [y]
 8. Butoane. Operațiile efective de filtrare/sortare/calculare [y]
 9. Mesaj de tip "confirm" [y]
-10. Validare la click pe butoanele de filtrare/sortare/calculare [ADD MORE]
-
- - bootstrap_js
+10. Validare la click pe butoanele de filtrare/sortare/calculare [y]
 
 
  Bonusuri:
 1
-2 
-3
-4
+2 teme
+3 produse.ejs > CTRL + F Nu există
+4 produse.ejs > produse.js
 5
-6
-7
+6 butoane produse.ejs
+7 index.js > CTRL + F normalizeString
 8
-9
-10
+9 produs.ejs > carusel poze
+10 
 11
 12 a > index.ejs, function ofertaNoua() b > oferte.oferte[0]
-13
-14
-15
-16
+13 index.js > CTRL + F backup
+14 produs.ejs > CTRL + F cel mai ieftin produs 
+15 produse.ejs > CTRL + F  Număr total de produse vizibile
+16 produs.ejs
 17
 18
 19

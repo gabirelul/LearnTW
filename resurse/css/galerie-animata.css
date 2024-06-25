@@ -81,6 +81,16 @@
   animation-delay: 10s;
 }
 
+.galerie_animata figure:nth-child(7) {
+  animation: fadeToCorners 16s infinite;
+  animation-delay: 12s;
+}
+
+.galerie_animata figure:nth-child(8) {
+  animation: fadeToCorners 16s infinite;
+  animation-delay: 14s;
+}
+
 @keyframes fadeToCorners {
   0% {
     opacity: 0;

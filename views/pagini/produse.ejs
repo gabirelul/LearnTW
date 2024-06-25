@@ -20,6 +20,7 @@
             
             
             <label> Nume: <input type="text" id="inp-nume" onchange="filtrareProduse()"></label>
+            
             <div class="btn-group" role="group" aria-label="cc">
                 <input type="radio" class="btn-check" name="gr_rad" id="i_rad1" value="0:2000" autocomplete="off"
                     onchange="filtrareProduse()">
@@ -50,7 +51,7 @@
                         <% } %>
                 </select>
             </label>
-            <div class="form-floating">
+            <div class="form-floating" id="val-descriere">
                 <textarea class="form-control" id="i_textarea" placeholder=" " required
                     onchange="filtrareProduse()"></textarea>
                 <label for="i_textarea">Descriere...</label>
@@ -85,7 +86,7 @@
                 <div class="grid-produse">
                     
                     <% for( let prod of locals.produse) { %>
-                        <article class="produs">
+                        <article class="produs" data-id="<%- prod.id %>">
                             
                             <h3 class="nume">Nume: <a href="/produs/<%-prod.id %>"><span class="val-nume"><%-
                                             prod.nume%></span></a></h3>
@@ -117,7 +118,6 @@
                                 <button class="sesiune-button" onclick="deleteProductSession(this)">
                                     <i class="bi bi-x-octagon-fill"></i>
                                 </button>
-                                
                             </div>
                             
 

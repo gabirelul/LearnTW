@@ -18,6 +18,8 @@ obGlobal = {
 // conectare baza de date
 const { Client } = require('pg');
 const AccesBD = require("./module_proprii/accesbd.js");
+
+const formidable = require("formidable");
 const { Utilizator } = require("./module_proprii/utilizator.js")
 const session = require('express-session');
 const Drepturi = require("./module_proprii/drepturi.js");
@@ -123,7 +125,7 @@ app.get(["/", "/home", "/index"], function (req, res) {
     res.render("pagini/index", { ip: req.ip, imagini: obGlobal.obImagini.imagini, oferta: ofertaCurenta });
 });
 
-const T = 100; //minute
+const T = 200; //minute
 
 function ofertaNoua() {
     const categoriesQuery = "select * from unnest(enum_range(null::categ_masini))";
@@ -206,10 +208,16 @@ app.get("/data", function (req, res) {
     res.write("" + new Date());
     res.end();
 });
+
 app.get("/suma/:a/:b", function (req, res) {
     var suma = parseInt(req.params.a) + parseInt(req.params.b)
     res.send("" + suma);
 });
+
+app.get("/ceva", function (req, res) {
+    console.log("cale:", req.url)
+    res.send("<h1>altceva</h1> ip:" + req.ip);
+})
 
 // 18.
 app.get("/favicon.ico", function (req, res) {
@@ -251,7 +259,6 @@ app.get(new RegExp("^\/resurse\/[A-Za-z0-9\/]*\/$"), function (req, res) {
 
 app.get("/*", function (req, res) {
     console.log(req.url)
-    //res.send("whatever");
     try {
         res.render("pagini" + req.url, function (err, rezHtml) {
             // console.log(rezHtml);
@@ -270,7 +277,7 @@ app.get("/*", function (req, res) {
     catch (err1) {
         if (err1.message.startsWith("Cannot find module")) {
             afisareEroare(res, 404);
-            console.log("Nu a gasit resursa: ", req.url);
+            console.log("Nu s-a gasit resursa: ", req.url);
         } else {
             afisareEroare(res)
         }
@@ -303,7 +310,7 @@ function afisareEroare(res, _identificator, _titlu, _text, _imagine) {
             titlu: _titlu || eroare_default.titlu,
             text: _text || eroare_default.text,
             imagine: _imagine || eroare_default.imagine,
-        }) //al doilea argument este locals
+        })
         return;
     }
     else {
@@ -370,10 +377,8 @@ app.get("/galerie-animata", function (req, res) {
 
 // Et 5
 function compileazaScss(caleScss, caleCss) {
-    // console.log("cale:",caleCss);
+    console.log("cale:", caleCss);
     if (!caleCss) {
-        // let vectorCale=caleScss.split("/")
-        // let numeFisExt=vectorCale[vectorCale.length-1];
 
         let numeFisExt = path.basename(caleScss);
         let numeFis = numeFisExt.split(".")[0]   /// "a.scss"  -> ["a","scss"]
@@ -385,22 +390,22 @@ function compileazaScss(caleScss, caleCss) {
     if (!path.isAbsolute(caleCss))
         caleCss = path.join(obGlobal.folderCss, caleCss)
 
+
     let caleBackup = path.join(obGlobal.folderBackup, "resurse/css");
-    if (!fs.existsSync(caleBackup))
-        fs.mkdirSync(caleBackup, { recursive: true });
+    if (!fs.existsSync(caleBackup)) {
+        fs.mkdirSync(caleBackup, { recursive: true })
+    }
 
     // la acest punct avem cai absolute in caleScss si  caleCss
-    // let vectorCale=caleCss.split("/");
-    // let numeFisCss=vectorCale[vectorCale.length-1];
+    // TO DO
     let numeFisCss = path.basename(caleCss);
-    if (fs.existsSync(caleCss))
+    if (fs.existsSync(caleCss)) {
         fs.copyFileSync(caleCss, path.join(obGlobal.folderBackup, "resurse/css", numeFisCss))// +(new Date()).getTime()
-
+    }
     rez = sass.compile(caleScss, { "sourceMap": true });
     fs.writeFileSync(caleCss, rez.css)
-    // console.log("Compilare SCSS",rez);
+    //console.log("Compilare SCSS",rez);
 }
-
 //compileazaScss("a.scss");
 vFisiere = fs.readdirSync(obGlobal.folderScss);
 for (let numeFis of vFisiere) {

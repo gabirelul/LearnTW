@@ -1,12 +1,7 @@
-#galerie-statica{
-  padding-left:var(--padding-intern);
-  padding-right:var(--padding-intern);
-}
-
 #grid-galerie {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 columns */
-  grid-template-rows: repeat(3, 1fr); /* 3 rows */
+  grid-template-columns: repeat(4, 1fr); /* 4 coloane */
+  grid-template-rows: repeat(3, 1fr); /* 3 linii */
   grid-row-gap: 0.5em;
   grid-column-gap: 0.5em;
   counter-reset: nrimag 3;
@@ -37,7 +32,7 @@
 }
 
 #grid-galerie figcaption::before{
-  content: counter(nrimag, lower-alpha) ")"; /* sau lower-alpha */ /*lower-roman sau lower-number*/
+  content: counter(nrimag, lower-alpha) ")";
 }
 
 #grid-galerie figure:hover figcaption {

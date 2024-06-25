@@ -76,18 +76,6 @@ body {
   --lightGrey: #e8e9eb;
   --visitedLinks: #8a2be2;
 }
-body.dark {
-  --red: #cc0000;
-  --yellow: green;
-  --blueDark: #666666;
-  --blueLight: #1a3d66;
-  --cream: #2b2b2b;
-  --dark: #000;
-  --white: #fff;
-  --secondaryGrey: #595959;
-  --lightGrey: #1c1c1c;
-  --visitedLinks: #7f00ff;
-}
 @keyframes plimbare-orizontala {
   0% {
     transform: translateX(-100%);
@@ -169,7 +157,6 @@ body main #section-2 i {
 }
 body main #section-2 #tabel-container {
   width: 100%;
-  border-radius: 30px;
   overflow: auto;
 }
 body main #section-2 #tabel-container #stilizare-tabel {
@@ -241,18 +228,32 @@ body main #section-4 #container-iframe #stilizare-taburi a {
 body main #section-4 #container-iframe #stilizare-taburi a:hover {
   box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.3);
 }
-body main #section-5 .text {
-  font-size: 40px;
-  color: black;
-  position: relative;
-  transition: color 0.3s;
+body main #section-5 #reflexie {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 6em;
+  color: var(--blueLight);
+  transition: all 0.5s linear;
 }
-body main #section-5 .text::after {
-  content: attr(data-text);
-  display: block;
-  transform: scaleY(-1);
-  opacity: 0.5;
-  filter: blur(1px);
+body main #section-5 #reflexie #text-reflectat1,
+body main #section-5 #reflexie #text-reflectat2 {
+  flex: 1;
+  font-size: 40px;
+}
+body main #section-5 #reflexie #text-reflectat1 {
+  text-align: right;
+  margin-right: 0;
+  transform-origin: top right;
+  transform: skew(20deg) rotateZ(-25deg);
+}
+body main #section-5 #reflexie #text-reflectat2 {
+  margin-left: 0;
+  transform-origin: top left;
+  transform: rotateY(180deg) skew(-20deg) rotateZ(-28deg) translate(-70%, -70%);
+}
+body main #section-5 #reflexie:hover {
+  color: var(--blueDark);
 }
 body main #section-5 .efect-css-duotone {
   position: relative;
@@ -296,7 +297,7 @@ body main #section-6 #video-vtt video {
   min-width: 30%;
   max-width: 100%;
 }
-body main #section-6 #video-vtt video ::cue([lang="ro"]) {
+body main #section-6 #video-vtt ::cue {
   color: yellow;
   background-color: rgba(0, 0, 0, 0.8);
 }

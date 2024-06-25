@@ -7,24 +7,32 @@
     </head>
     <body>
         <%- include("../fragmente/header") %>
-        <main>
-            <div class="afisaj">
-                <h1>Inregistrare utilizator</h1>
-                <% if(!locals.raspuns) { %>
-
-                    <%-include("../fragmente/formular", {action: "/inregistrare"}) %>
-                <% } %>
-                
-                <% if(locals.raspuns) { %>
-                    <%- locals.raspuns+"<br/>"%>
-                <% } %>
-                <% if(locals.err) { %>
-                    <%- locals.err %>
-                <% } %>
+        <main class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h1 class="card-title mb-4 text-center text-primary">Înregistrare utilizator</h1>
+                            <% if(!locals.raspuns) { %>
+                                <div class="form-custom">
+                                    <%- include("../fragmente/formular", {action: "/inregistrare"}) %>
+                                </div>
+                            <% } %>
+                            <% if(locals.raspuns) { %>
+                                <div class="alert alert-success" role="alert">
+                                    <%- locals.raspuns %><br/>
+                                </div>
+                            <% } %>
+                            <% if(locals.err) { %>
+                                <div class="alert alert-danger" role="alert">
+                                    <%- locals.err %>
+                                </div>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
-        <footer>
             <%- include("../fragmente/footer") %>
-        </footer>
     </body>
 </html>
